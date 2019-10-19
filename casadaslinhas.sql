@@ -1,0 +1,1193 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 01-Set-2019 às 00:12
+-- Versão do servidor: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `casadaslinhas`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `codigos_barras_produtos`
+--
+
+CREATE TABLE `codigos_barras_produtos` (
+  `id` int(11) NOT NULL,
+  `st_codigo_barra` varchar(200) NOT NULL,
+  `produto_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `codigos_barras_produtos`
+--
+
+INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VALUES
+(4, '7899452717948', 367),
+(5, '7899452718686', 371),
+(6, '7898147024163', 372),
+(7, '7899452718693', 373),
+(8, '7899452718716', 375),
+(9, '7899452718723', 376),
+(10, '7899452718730', 377),
+(11, '7899452717856', 382),
+(12, '7899452722621', 383),
+(13, '7899452715906', 384),
+(14, '7899452715913', 386),
+(15, '7898493509352', 389),
+(16, '7898493509376', 390);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `estoques`
+--
+
+CREATE TABLE `estoques` (
+  `id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `nr_quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `itens_notas`
+--
+
+CREATE TABLE `itens_notas` (
+  `id` int(11) NOT NULL,
+  `nota_id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `nr_quantidade` int(11) NOT NULL,
+  `vl_valor_unitario` decimal(10,2) NOT NULL,
+  `vl_valor_total` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `marcas`
+--
+
+CREATE TABLE `marcas` (
+  `id` int(11) NOT NULL,
+  `st_marca` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `marcas`
+--
+
+INSERT INTO `marcas` (`id`, `st_marca`) VALUES
+(12, 'CIRCULO'),
+(13, 'EUROFIOS'),
+(14, 'ENOVELAR'),
+(15, 'CORFIX'),
+(16, 'SPACCHI'),
+(17, 'PROGRESSO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `notas_fiscais`
+--
+
+CREATE TABLE `notas_fiscais` (
+  `id` int(11) NOT NULL,
+  `nr_nota` int(11) NOT NULL,
+  `st_nome_empresa` varchar(100) NOT NULL,
+  `st_cnpj` varchar(15) NOT NULL,
+  `vl_valor_total_nota` decimal(10,2) NOT NULL,
+  `dt_compra` date NOT NULL,
+  `dt_emissao_nota` date NOT NULL,
+  `st_observacao` varchar(200) DEFAULT NULL,
+  `st_situacao` char(2) DEFAULT 'S'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `notas_fiscais`
+--
+
+INSERT INTO `notas_fiscais` (`id`, `nr_nota`, `st_nome_empresa`, `st_cnpj`, `vl_valor_total_nota`, `dt_compra`, `dt_emissao_nota`, `st_observacao`, `st_situacao`) VALUES
+(92, 165660, 'EUROFIOS', '07185774000171', '100.00', '2019-07-20', '2019-07-31', '', 'C'),
+(93, 112622, 'ENOVELAR', '02633138000153', '1956.91', '2019-08-21', '2019-08-21', '', 'S');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `nr_notas_vendas`
+--
+
+CREATE TABLE `nr_notas_vendas` (
+  `id` int(11) NOT NULL,
+  `nr_nota` int(11) NOT NULL,
+  `venda_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
+  `id` int(11) NOT NULL,
+  `st_produto` varchar(80) NOT NULL,
+  `vl_valor_venda` decimal(10,2) NOT NULL,
+  `marca_id` int(11) NOT NULL,
+  `tipo_produto_id` int(11) NOT NULL,
+  `st_observacao` varchar(200) NOT NULL,
+  `st_tamanho` varchar(25) DEFAULT NULL,
+  `st_medida` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_produto_id`, `st_observacao`, `st_tamanho`, `st_medida`) VALUES
+(2, 'SUPREMO PREDILETO N.6 CRU', '13.00', 14, 7, '', '627', 'M'),
+(3, 'SUPREMO PREDILETO CORES N.6 00002', '13.00', 14, 7, '', '627', 'M'),
+(4, 'SUPREMO PREDILETO CORES N.6 00003', '13.00', 14, 7, '', '627', 'M'),
+(5, 'SUPREMO PREDILETO CORES N.6  00004', '13.00', 14, 7, '', '627', 'M'),
+(6, 'SUPREMO PREDILETO CORES N.6  00005', '13.00', 14, 7, '', '627', 'M'),
+(7, 'SUPREMO PREDILETO CORES N.6  00006', '13.00', 14, 7, '', '627', 'M'),
+(8, 'SUPREMO PREDILETO CORES N.6 00007', '13.00', 14, 7, '', '627', 'M'),
+(9, 'SUPREMO PREDILETO CORES N.6 00008', '13.00', 14, 7, '', '627', 'M'),
+(10, 'SUPREMO PREDILETO CORES N.6 00010', '13.00', 14, 7, '', '627', 'M'),
+(11, 'SUPREMO PREDILETO CORES N.6 00011', '13.00', 14, 7, '', '627', 'M'),
+(12, 'SUPREMO PREDILETO CORES N.6 00012', '13.00', 14, 7, '', '627', 'M'),
+(13, 'SUPREMO PREDILETO CORES N.6 00013', '13.00', 14, 7, '', '627', 'M'),
+(14, 'SUPREMO PREDILETO CORES N.6 00015', '13.00', 14, 7, '', '627', 'M'),
+(15, 'SUPREMO PREDILETO CORES N.6 00016', '13.00', 14, 7, '', '627', 'M'),
+(16, 'SUPREMO PREDILETO CORES N.6 00017', '13.00', 14, 7, '', '627', 'M'),
+(17, 'SUPREMO PREDILETO CORES N.6  00018', '13.00', 14, 7, '', '627', 'M'),
+(18, 'SUPREMO PREDILETO CORES N.6  00019', '13.00', 14, 7, '', '627', 'M'),
+(19, 'SUPREMO PREDILETO CORES N.6  00020', '13.00', 14, 7, '', '627', 'M'),
+(20, 'SUPREMO PREDILETO N.6 00021', '13.00', 14, 7, '', '627', 'M'),
+(21, 'SUPREMO PREDILETO N.6 00022', '13.00', 14, 7, '', '627', 'M'),
+(22, 'SUPREMO PREDILETO N.6 00023', '13.00', 14, 7, '', '627', 'M'),
+(23, 'SUPREMO PREDILETO CORES N.6  00024', '13.00', 14, 7, '', '627', 'M'),
+(24, 'SUPREMO PREDILETO CORES N.6  00025', '13.00', 14, 7, '', '627', 'M'),
+(25, 'SUPREMO PREDILETO CORES N.6  00027', '13.00', 14, 7, '', '627', 'M'),
+(26, 'SUPREMO PREDILETO CORES N.6  00028', '13.00', 13, 7, '', '627', 'M'),
+(27, 'SUPREMO PREDILETO CORES N.6  00029', '13.00', 14, 7, '', '627', 'M'),
+(28, 'SUPREMO PREDILETO CORES N.6  00031', '13.00', 14, 7, '', '627', 'M'),
+(29, 'SUPREMO PREDILETO CORES N.6  00033', '13.00', 14, 6, '', '627', 'M'),
+(30, 'SUPREMO PREDILETO CORES N.6  00036', '13.00', 14, 7, '', '627', 'M'),
+(31, 'SUPREMO PREDILETO CORES N.6  00037', '13.00', 13, 7, '', '627', 'M'),
+(32, 'SUPREMO PREDILETO CORES N.6  00038', '13.00', 14, 7, '', '627', 'M'),
+(33, 'SUPREMO PREDILETO CORES N.6  00039', '13.00', 14, 7, '', '627', 'M'),
+(34, 'SUPREMO PREDILETO CORES N.6  00040', '13.00', 14, 7, '', '627', 'M'),
+(35, 'SUPREMO PREDILETO CORES N.6  00042', '13.00', 14, 6, '', '627', 'M'),
+(36, 'SUPREMO PREDILETO CORES N.6  00046', '13.00', 14, 7, '', '627', 'M'),
+(37, 'SUPREMO PREDILETO CORES N.6  00047', '13.00', 14, 7, '', '627', 'M'),
+(38, 'SUPREMO PREDILETO CORES N.6  00048', '13.00', 14, 7, '', '627', 'M'),
+(39, 'SUPREMO PREDILETO CORES N.6  00054', '13.00', 14, 7, '', '627', 'M'),
+(40, 'SUPREMO PREDILETO CORES N.6  00074', '13.00', 13, 7, '', '627', 'M'),
+(41, 'SUPREMO PREDILETO CORES N.6  00075', '13.00', 14, 7, '', '627', 'M'),
+(42, 'SUPREMO PREDILETO CORES N.6  00109', '13.00', 14, 7, '', '627', 'M'),
+(43, 'SUPREMO PREDILETO CORES N.6  00110', '13.00', 14, 7, '', '627', 'M'),
+(44, 'SUPREMO PREDILETO CORES N.6  00111', '13.00', 14, 7, '', '627', 'M'),
+(45, 'SUPREMO PREDILETO CORES N.6  00112', '13.00', 14, 7, '', '627', 'M'),
+(46, 'SUPREMO PREDILETO CORES N.6  00113', '13.00', 14, 7, '', '627', 'M'),
+(47, 'SUPREMO PREDILETO CORES N.6  00114', '13.00', 14, 7, '', '627', 'M'),
+(48, 'SUPREMO PREDILETO CORES N.6  00115', '13.00', 14, 7, '', '627', 'M'),
+(49, 'SUPREMO PREDILETO CORES N.6  00116', '13.00', 13, 7, '', '627', 'M'),
+(50, 'SUPREMO PREDILETO CORES N.6  00150', '13.00', 14, 7, '', '627', 'M'),
+(51, 'SUPREMO PREDILETO CORES N.6  00151', '13.00', 14, 7, '', '627', 'M'),
+(52, 'SUPREMO PREDILETO CORES N.6  00152', '13.00', 14, 7, '', '627', 'M'),
+(53, 'SUPREMO PREDILETO CORES N.6  00153', '13.00', 14, 7, '', '627', 'M'),
+(54, 'SUPREMO PREDILETO CORES N.6  00154', '13.00', 14, 7, '', '627', 'M'),
+(55, 'SUPREMO PREDILETO CORES N.4 00001', '13.00', 14, 7, '', '940', 'M'),
+(56, 'SUPREMO PREDILETO CORES N.4 00002', '13.00', 14, 7, '', '940', 'M'),
+(57, 'SUPREMO PREDILETO CORES N.4 00003', '13.00', 14, 7, '', '940', 'M'),
+(58, 'SUPREMO PREDILETO CORES N.4 00004', '13.00', 14, 7, '', '940', 'M'),
+(59, 'SUPREMO PREDILETO CORES N.4 00005', '13.00', 14, 7, '', '940', 'M'),
+(60, 'SUPREMO PREDILETO CORES N.4  00006', '13.00', 14, 7, '', '940', 'CM'),
+(61, 'SUPREMO PREDILETO CORES N.4  00007', '13.00', 14, 6, '', '940', 'M'),
+(62, 'SUPREMO PREDILETO CORES N.4 00008', '13.00', 13, 7, '', '940', 'M'),
+(63, 'SUPREMO PREDILETO CORES N.4 00010', '13.00', 14, 7, '', '940', 'M'),
+(64, 'SUPREMO PREDILETO CORES N.4  00011', '13.00', 14, 7, '', '940', 'M'),
+(65, 'SUPREMO PREDILETO CORES N.4  00012', '13.00', 14, 7, '', '940', 'M'),
+(66, 'SUPREMO PREDILETO CORES N.4  00013', '13.00', 14, 7, '', '940', 'M'),
+(67, 'SUPREMO PREDILETO CORES N.4  00015', '13.00', 13, 7, '', '940', 'M'),
+(68, 'SUPREMO PREDILETO CORES N.4  00016', '13.00', 14, 7, '', '940', 'M'),
+(69, 'SUPREMO PREDILETO CORES N.4  00017', '13.00', 14, 7, '', '940', 'M'),
+(70, 'SUPREMO PREDILETO CORES N.4  00018', '13.00', 14, 7, '', '940', 'M'),
+(71, 'SUPREMO PREDILETO CORES N.6  00019', '13.00', 14, 7, '', '940', 'M'),
+(72, 'SUPREMO PREDILETO CORES N.4  00020', '13.00', 14, 7, '', '940', 'M'),
+(73, 'SUPREMO PREDILETO CORES N.4  00021', '13.00', 14, 7, '', '940', 'M'),
+(74, 'SUPREMO PREDILETO CORES N.4  00022', '13.00', 14, 7, '', '940', 'M'),
+(75, 'SUPREMO PREDILETO CORES N.4  00023', '13.00', 14, 7, '', '940', 'M'),
+(76, 'SUPREMO PREDILETO CORES N.4 00024', '13.00', 14, 7, '', '940', 'M'),
+(77, 'SUPREMO PREDILETO CORES N.4 00025', '13.00', 14, 7, '', '940', 'M'),
+(78, 'SUPREMO PREDILETO CORES N.4 00027', '13.00', 14, 7, '', '940', 'M'),
+(79, 'SUPREMO PREDILETO CORES N.4 00028', '13.00', 14, 7, '', '940', 'M'),
+(80, 'SUPREMO PREDILETO CORES N.4 00029', '13.00', 14, 7, '', '940', 'M'),
+(81, 'SUPREMO PREDILETO CORES N.4  00031', '13.00', 14, 7, '', '940', 'M'),
+(82, 'SUPREMO PREDILETO CORES N.4  00033', '13.00', 14, 7, '', '940', 'M'),
+(83, 'SUPREMO PREDILETO CORES N.4  00036', '13.00', 14, 7, '', '940', 'M'),
+(84, 'SUPREMO PREDILETO CORES N.4  00037', '13.00', 14, 7, '', '940', 'M'),
+(85, 'SUPREMO PREDILETO CORES N.4  00038', '13.00', 14, 7, '', '940', 'M'),
+(86, 'SUPREMO PREDILETO CORES N.4  00039', '13.00', 14, 7, '', '940', 'M'),
+(87, 'SUPREMO PREDILETO CORES N.4  00040', '13.00', 14, 7, '', '940', 'M'),
+(88, 'SUPREMO PREDILETO CORES N.4  00042', '13.00', 14, 7, '', '940', 'M'),
+(89, 'SUPREMO PREDILETO CORES N.4  00046', '13.00', 14, 7, '', '940', 'M'),
+(90, 'SUPREMO PREDILETO CORES N.4  00047', '13.00', 14, 7, '', '940', 'M'),
+(91, 'SUPREMO PREDILETO CORES N.4  00048', '13.00', 14, 7, '', '940', 'M'),
+(92, 'SUPREMO PREDILETO CORES N.4  00054', '13.00', 14, 7, '', '940', 'M'),
+(93, 'SUPREMO PREDILETO CORES N.4  00074', '13.00', 14, 7, '', '940', 'M'),
+(94, 'SUPREMO PREDILETO CORES N.4  00075', '13.00', 14, 7, '', '940', 'M'),
+(95, 'SUPREMO PREDILETO CORES N.4  00109', '13.00', 14, 7, '', '940', 'M'),
+(96, 'SUPREMO PREDILETO CORES N.4  00110', '13.00', 14, 7, '', '940', 'M'),
+(97, 'SUPREMO PREDILETO CORES N.4  00111', '13.00', 14, 7, '', '940', 'M'),
+(98, 'SUPREMO PREDILETO CORES N.4  00112', '13.00', 14, 7, '', '940', 'M'),
+(99, 'SUPREMO PREDILETO CORES N.4  00113', '13.00', 14, 7, '', '940', 'M'),
+(100, 'SUPREMO PREDILETO CORES N.4  00114', '13.00', 14, 7, '', '940', 'M'),
+(101, 'SUPREMO PREDILETO CORES N.4  00115', '13.00', 14, 7, '', '940', 'M'),
+(102, 'SUPREMO PREDILETO CORES N.4  00116', '13.00', 14, 7, '', '940', 'M'),
+(103, 'SUPREMO PREDILETO CORES N.4  00150', '13.00', 14, 7, '', '940', 'M'),
+(104, 'SUPREMO PREDILETO CORES N.4  00151', '13.00', 14, 7, '', '940', 'M'),
+(105, 'SUPREMO PREDILETO CORES N.4  00152', '13.00', 14, 7, '', '940', 'M'),
+(106, 'SUPREMO PREDILETO CORES N.4  00153', '13.00', 14, 7, '', '940', 'M'),
+(107, 'SUPREMO PREDILETO CORES N.4  00154', '13.00', 14, 7, '', '940', 'M'),
+(108, 'SUPREMO BIG CORES N.6 00001', '34.00', 14, 7, '', '1,800', 'KG'),
+(109, 'SUPREMO BIG CORES N.6 00002', '34.00', 14, 7, '', '1,800', 'M'),
+(110, 'SUPREMO BIG CORES N.6 00004', '34.00', 14, 7, '', '1,800', 'M'),
+(111, 'SUPREMO BIG CORES N.6 00005', '34.00', 14, 7, '', '1,800', 'KG'),
+(112, 'SUPREMO CORES BIG N.6 00001', '34.00', 14, 7, '', '1,800', 'KG'),
+(113, 'SUPREMO BIG CORES N.6 00002', '34.00', 14, 7, '', '1,800', 'KG'),
+(114, 'SUPREMO BIG CORES N.6 00004', '34.00', 14, 7, '', '1,800', 'KG'),
+(115, 'SUPREMO BIG CORES N.6 00005', '34.00', 14, 7, '', '1,800', 'KG'),
+(116, 'SUPREMO BIG CORES N.6 00006', '34.00', 14, 7, '', '1,800', 'KG'),
+(117, 'SUPREMO BIG CORES N.6 00007', '34.00', 14, 7, '', '1,800', 'KG'),
+(118, 'SUPREMO BIG CORES N.6 00008', '34.00', 14, 7, '', '1,800', 'KG'),
+(119, 'SUPREMO BIG CORES N.6 00010', '34.00', 14, 7, '', '1,800', 'KG'),
+(120, 'SUPREMO BIG CORES N.6 00011', '34.00', 14, 7, '', '1,800', 'KG'),
+(121, 'SUPREMO BIG CORES N.6 00013', '34.00', 14, 7, '', '1,800', 'KG'),
+(122, 'SUPREMO BIG CORES N.6 00015', '34.00', 14, 7, '', '1,800', 'KG'),
+(123, 'SUPREMO BIG CORES N.6 00016', '34.00', 14, 7, '', '1,800', 'KG'),
+(124, 'SUPREMO BIG CORES N.6 00018', '34.00', 14, 7, '', '1,800', 'KG'),
+(125, 'SUPREMO BIG CORES N.6 00019', '34.00', 14, 7, '', '1,800', 'KG'),
+(126, 'SUPREMO BIG CORES N.6 00020', '34.00', 14, 7, '', '1,800', 'KG'),
+(127, 'SUPREMO BIG CORES N.6 00021', '34.00', 14, 7, '', '1,800', 'KG'),
+(128, 'SUPREMO BIG CORES N.6 00022', '34.00', 14, 7, '', '1,800', 'KG'),
+(129, 'SUPREMO BIG CORES N.6 00023', '34.00', 13, 7, '', '1,800', 'KG'),
+(130, 'SUPREMO BIG CORES N.6 00024', '34.00', 14, 7, '', '1,800', 'KG'),
+(131, 'SUPREMO BIG CORES N.6 00025', '34.00', 14, 7, '', '1,800', 'KG'),
+(132, 'SUPREMO BIG CORES N.6 00029', '34.00', 14, 7, '', '1,800', 'KG'),
+(133, 'SUPREMO BIG CORES N.6 00031', '34.00', 13, 7, '', '1,800', 'KG'),
+(134, 'SUPREMO BIG CORES N.6 00036', '34.00', 14, 7, '', '1,800', 'KG'),
+(135, 'SUPREMO BIG CORES N.6 00038', '34.00', 14, 7, '', '1,800', 'KG'),
+(136, 'SUPREMO BIG CORES N.6 00040', '34.00', 14, 7, '', '1,800', 'KG'),
+(137, 'SUPREMO BIG CORES N.6 00042', '34.00', 14, 7, '', '1,800', 'KG'),
+(138, 'SUPREMO BIG CORES N.6 00046', '34.00', 14, 7, '', '1,800', 'KG'),
+(139, 'SUPREMO BIG CORES N.6 00054', '34.00', 14, 7, '', '1,800', 'KG'),
+(140, 'SUPREMO BIG CORES N.6 00074', '34.00', 14, 6, '', '1,800', 'KG'),
+(141, 'SUPREMO BIG CORES N.6 00075', '34.00', 14, 7, '', '1,800', 'KG'),
+(142, 'SUPREMO BIG CORES N.6 00109', '34.00', 14, 7, '', '1,800', 'KG'),
+(143, 'SUPREMO BIG CORES N.6 00110', '34.00', 14, 7, '', '1,800', 'KG'),
+(144, 'SUPREMO BIG CORES N.6 00111', '34.00', 14, 7, '', '1,800', 'KG'),
+(145, 'SUPREMO BIG CORES N.6 00112', '34.00', 14, 6, '', '1,800', 'KG'),
+(146, 'SUPREMO BIG CORES N.6 00113', '34.00', 14, 7, '', '1,800', 'KG'),
+(147, 'SUPREMO BIG CORES N.6 00150', '34.00', 14, 7, '', '1,800', 'KG'),
+(148, 'SUPREMO BIG CORES N.6 00151', '34.00', 14, 7, '', '1,800', 'KG'),
+(149, 'SUPREMO BIG CORES N.6 00152', '34.00', 14, 7, '', '1,800', 'KG'),
+(150, 'SUPREMO BIG CORES N.6 00153', '34.00', 14, 7, '', '1,800', 'KG'),
+(151, 'SUPREMO BIG CORES N.6 00154', '34.00', 14, 7, '', '1,800', 'KG'),
+(153, 'SUPREMO BIG CORES CRU N.6', '34.00', 14, 7, '', '1,800', 'KG'),
+(154, 'SUPREMO BIG CORES CRU N.4', '34.00', 14, 7, '', '1,800', 'KG'),
+(155, 'SUPREMO PREDILETO CRU N.4 00000', '13.00', 14, 7, '', '940', 'M'),
+(156, 'SUPREMO PREDILETO CRU N.6 00000', '13.00', 14, 7, '', '627', 'M'),
+(157, 'SUPREMO CRU N.2 00000', '14.00', 14, 7, '', '1650', 'M'),
+(158, 'SUPREMO BIG CORES CRU N.3', '14.00', 14, 7, '', '1350', 'M'),
+(159, 'SUPREMO CRU N.4 00000', '19.00', 14, 7, '', '1KL', 'KG'),
+(160, 'SUPREMO CRU N.6 00000', '19.00', 14, 7, '', '1KL', 'KG'),
+(161, 'SUPREMO COLORIDO N.6 00001', '19.00', 14, 7, '', '1KL', 'KG'),
+(162, 'SUPREMO COLORIDO N.6 00002', '19.00', 14, 7, '', '1KL', 'KG'),
+(163, 'SUPREMO COLORIDON.6 00004', '19.00', 14, 7, '', '1KL', 'KG'),
+(164, 'SUPREMO COLORIDO N.6 00005', '19.00', 14, 7, '', '1KL', 'KG'),
+(165, 'SUPREMO COLORIDO N.6 00006', '19.00', 14, 7, '', '1KL', 'KG'),
+(166, 'SUPREMO COLORIDO N.6 00008', '19.00', 14, 7, '', '1KL', 'KG'),
+(167, 'SUPREMO COLORIDO N.6 00010', '19.00', 14, 7, '', '1KL', 'KG'),
+(168, 'SUPREMO COLORIDO N.6 00011', '19.00', 14, 7, '', '1KL', 'KG'),
+(169, 'SUPREMO COLORIDO N.6 00012', '19.00', 14, 6, '', '1KL', 'KG'),
+(170, 'SUPREMO COLORIDO N.6 00013', '19.00', 14, 7, '', '1KL', 'KG'),
+(171, 'SUPREMO COLORIDO N.6 00018', '19.00', 14, 7, '', '1KL', 'KG'),
+(172, 'SUPREMO COLORIDO N.6 00019', '19.00', 14, 7, '', '1KL', 'KG'),
+(173, 'SUPREMO COLORIDO N.6 00020', '19.00', 14, 7, '', '1KL', 'KG'),
+(174, 'SUPREMO COLORIDO N.6 00021', '19.00', 14, 7, '', '1KL', 'KG'),
+(175, 'SUPREMO COLORIDO N.6 00022', '19.00', 14, 7, '', '1KL', 'KG'),
+(176, 'SUPREMO COLORIDO N.6 00023', '19.00', 14, 7, '', '1KL', 'KG'),
+(177, 'SUPREMO COLORIDO N.6 00024', '19.00', 14, 7, '', '1KL', 'KG'),
+(178, 'SUPREMO COLORIDO N.6 00029', '19.00', 14, 7, '', '1KL', 'KG'),
+(179, 'SUPREMO COLORIDO N.6 00042', '19.00', 14, 7, '', '1KL', 'KG'),
+(180, 'SUPREMO COLORIDO N.6 00109', '19.00', 14, 7, '', '1KL', 'KG'),
+(181, 'SUPREMO COLORIDO N.6 00112', '19.00', 14, 7, '', '1KL', 'KG'),
+(182, 'SUPREMO COLORIDO N.6 00113', '19.00', 14, 7, '', '1KL', 'KG'),
+(183, 'SUPREMO CRU COM BRILHO PRATA N.6 00059', '15.00', 14, 7, '', '732', 'M'),
+(184, 'SUPREMO CRU COM BRILHO OURO  N.6 00060', '15.00', 14, 7, '', '732', 'M'),
+(185, 'SUPREMO CORES COM BRILHO 65', '15.00', 14, 7, '', '732', 'M'),
+(186, 'SUPREMO CORES COM BRILHO N.6 00066', '15.00', 14, 7, '', '732', 'KG'),
+(187, 'SUPREMO CORES COM BRILHO N.6 00068', '15.00', 14, 7, '', '732', 'M'),
+(188, 'SUPREMO CRU COM BRILHO OURO. N.6 00060', '15.00', 14, 7, '', '732', 'M'),
+(189, 'SUPREMO CORES COM BRILHO N6 00069', '15.00', 14, 7, '', '732', 'M'),
+(190, 'SUPREMO CORES COM BRILHO N.6 00071', '15.00', 14, 7, '', '732', 'KG'),
+(191, 'SUPREMO CORES COM BRILHO N6 00076', '15.00', 14, 7, '', '732', 'KG'),
+(192, 'SUPREMO CORES COM BRILHO N6 00077', '15.00', 14, 7, '', '732', 'M'),
+(193, 'SUPREMO CORES COM BRILHO N.6 00081', '15.00', 14, 7, '', '732', 'KG'),
+(194, 'SUPREMO CORES COM BRILHO N.6 00082', '15.00', 14, 7, '', '732', 'KG'),
+(195, 'SUPREMO CORES COM BRILHO N.6 00083', '15.00', 14, 7, '', '732', 'M'),
+(196, 'SUPREMO CORES COM BRILHO N.6 00093', '15.00', 14, 7, '', '732', 'KG'),
+(197, 'SUPREMO CORES COM BRILHO N.6 00095', '15.00', 14, 7, '', '732', 'KG'),
+(198, 'SUPREMO CORES COM BRILHO N.6 00096', '15.00', 14, 7, '', '732', 'KG'),
+(199, 'SUPREMO CORES COM BRILHO N.6 00098', '15.00', 14, 7, '', '732', 'KG'),
+(200, 'SUPREMO CORES COM BRILHO N.6 00099', '15.00', 14, 7, '', '732', 'M'),
+(201, 'SUPREMO CORES COM BRILHO N.6 00101', '15.00', 14, 6, '', '732', 'M'),
+(202, 'SUPREMO CORES COM BRILHO N.6 00102', '15.00', 14, 7, '', '732', 'M'),
+(203, 'SUPREMO CORES COM BRILHO N.6 00103', '15.00', 14, 7, '', '732', 'M'),
+(204, 'SUPREMO CORES COM BRILHO N.6 00104', '15.00', 14, 7, '', '732', 'M'),
+(205, 'SUPREMO CORES COM BRILHO N.6 00105', '15.00', 14, 7, '', '732', 'M'),
+(206, 'SUPREMO CORES COM BRILHO N.6 00106', '15.00', 14, 7, '', '732', 'M'),
+(207, 'SUPREMO CORES COM BRILHO N.6 00108', '15.00', 14, 7, '', '732', 'M'),
+(208, 'SUPREMO CORES COM BRILHO N.6 00127', '15.00', 14, 7, '', '732', 'M'),
+(209, 'SUPREMO CORES COM BRILHO N.6 00128', '15.00', 14, 7, '', '732', 'M'),
+(210, 'SUPREMO CORES COM BRILHO N.6 00129', '15.00', 14, 7, '', '732', 'M'),
+(211, 'SUPREMO CORES COM BRILHO N.6 00130', '15.00', 14, 7, '', '732', 'M'),
+(212, 'SUPREMO CORES COM BRILHO N.4 00065', '15.00', 14, 7, '', '1097', 'KG'),
+(213, 'SUPREMO CORES COM BRILHO N.4 00066', '15.00', 14, 7, '', '1097', 'M'),
+(214, 'SUPREMO CORES COM BRILHO N.4 00068', '15.00', 14, 7, '', '1097', 'M'),
+(215, 'SUPREMO CORES COM BRILHO N.4 00069', '15.00', 14, 6, '', '1097', 'M'),
+(216, 'SUPREMO CORES COM BRILHO N.4 00076', '15.00', 14, 7, '', '1097', 'M'),
+(217, 'SUPREMO SENIOR  00001', '7.00', 14, 6, '', '500', 'M'),
+(218, 'SUPREMO SENIOR  00002', '7.00', 13, 7, '', '500', 'M'),
+(219, 'SUPREMO SENIOR  00003', '7.00', 14, 6, '', '500', 'M'),
+(220, 'SUPREMO SENIOR  00005', '7.00', 14, 6, '', '500', 'M'),
+(221, 'SUPREMO SENIOR  00006', '7.00', 14, 6, '', '500', 'M'),
+(222, 'SUPREMO SENIOR 00007', '7.00', 14, 6, '', '500', 'M'),
+(223, 'SUPREMO SENIOR  00008', '7.00', 14, 6, '', '500', 'M'),
+(224, 'SUPREMO SENIOR  00010', '7.00', 14, 6, '', '500', 'M'),
+(225, 'SUPREMO SENIOR  00012', '7.00', 13, 6, '', '500', 'M'),
+(226, 'SUPREMO SENIOR 00013', '7.00', 14, 6, '', '500', 'M'),
+(227, 'SUPREMO SENIOR 00014', '7.00', 14, 6, '', '500', 'M'),
+(228, 'SUPREMO SENIOR 00015', '7.00', 14, 6, '', '500', 'M'),
+(229, 'SUPREMO SENIOR 00016', '7.00', 14, 6, '', '500', 'M'),
+(230, 'SUPREMO SENIOR 00017', '7.00', 14, 6, '', '500', 'M'),
+(231, 'SUPREMO SENIOR 00018', '7.00', 14, 6, '', '500', 'M'),
+(232, 'SUPREMO SENIOR 00019', '7.00', 14, 6, '', '500', 'M'),
+(233, 'SUPREMO SENIOR 00020', '7.00', 14, 6, '', '500', 'M'),
+(234, 'SUPREMO SENIOR 00021', '7.00', 14, 6, '', '500', 'M'),
+(235, 'SUPREMO SENIOR 00022', '7.00', 14, 6, '', '500', 'M'),
+(236, 'SUPREMO SENIOR 00024', '7.00', 14, 6, '', '500', 'M'),
+(237, 'SUPREMO SENIOR 00039', '7.00', 14, 6, '', '500', 'M'),
+(238, 'SUPREMO SENIOR 00050', '7.00', 14, 6, '', '500', 'M'),
+(239, 'SUPREMO SENIOR 00059', '7.00', 14, 6, '', '500', 'M'),
+(240, 'SUPREMO SENIOR 00061', '7.00', 14, 6, '', '500', 'M'),
+(241, 'SUPREMO SENIOR 00064', '7.00', 14, 6, '', '500', 'M'),
+(242, 'SUPREMO SENIOR 00065', '7.00', 14, 6, '', '500', 'M'),
+(243, 'SUPREMO SENIOR 00066', '7.00', 14, 6, '', '500', 'M'),
+(244, 'SUPREMO SENIOR 00105', '7.00', 14, 6, '', '500', 'M'),
+(245, 'SUPREMO SENIOR 00106', '7.00', 14, 6, '', '500', 'M'),
+(246, 'SUPREMO SENIOR BRILHO 00041', '8.50', 14, 6, '', '500', 'M'),
+(247, 'SUPREMO SENIOR BRILHO 00045', '8.50', 14, 6, '', '500', 'M'),
+(248, 'SUPREMO SENIOR BRILHO 00046', '8.50', 14, 6, '', '500', 'M'),
+(249, 'SUPREMO SENIOR BRILHO 00051', '8.50', 14, 6, '', '500', 'M'),
+(250, 'SUPREMO SENIOR COM BRILHO 00052', '8.50', 14, 6, '', '500', 'M'),
+(251, 'SUPREMO SENIOR COM BRILHO 00053', '8.50', 14, 6, '', '500', 'M'),
+(252, 'SUPREMO SENIOR COM BRILHO 00054', '8.50', 13, 6, '', '500', 'M'),
+(253, 'SUPREMO SENIOR COM BRILHO 00055', '8.50', 14, 6, '', '500', 'M'),
+(254, 'SUPREMO SENIOR COM BRILHO 00056', '8.50', 13, 7, '', '500', 'M'),
+(255, 'SUPREMO SENIOR COM BRILHO 00057', '8.50', 14, 6, '', '500', 'M'),
+(256, 'SUPREMO SENIOR COM BRILHO 00074', '8.50', 14, 6, '', '500', 'M'),
+(257, 'SUPREMO SENIOR COM BRILHO 00075', '8.50', 14, 6, '', '500', 'M'),
+(258, 'SUPREMO SENIOR COM BRILHO 00080', '8.50', 14, 6, '', '500', 'M'),
+(259, 'SUPREMO SENIOR COM BRILHO 00083', '8.50', 13, 6, '', '500', 'M'),
+(260, 'SUPREMO SENIOR COM BRILHO 00084', '8.50', 14, 6, '', '500', 'M'),
+(261, 'SUPREMO SENIOR COM BRILHO 00085', '8.50', 14, 6, '', '500', 'M'),
+(262, 'SUPREMO SENIOR COM BRILHO 00086', '8.50', 14, 6, '', '500', 'M'),
+(263, 'SUPREMO SEMIOR COM BRILHO   00087', '8.50', 14, 6, '', '500', 'M'),
+(264, 'SUPREMO SEMIOR COM BRILHO   00088', '8.50', 14, 6, '', '500', 'M'),
+(265, 'SUPREMO SEMIOR COM BRILHO   00089', '8.50', 14, 6, '', '500', 'M'),
+(266, 'SUPREMO FLORAL 00001', '8.50', 14, 6, '', '170', 'M'),
+(267, 'SUPREMO FLORAL 00002', '8.50', 14, 6, '', '170', 'M'),
+(268, 'SUPREMO 00003', '8.50', 14, 6, '', '170', 'M'),
+(269, 'SUPREMO FLORAL 00004', '8.50', 14, 6, '', '170', 'M'),
+(270, 'SUPREMO FLORAL 00005', '8.50', 14, 6, '', '170', 'M'),
+(271, 'SUPREMO FLORAL 00006', '8.50', 14, 6, '', '170', 'M'),
+(272, 'SUPREMO FLORAL 00007', '8.50', 14, 6, '', '170', 'M'),
+(273, 'SUPREMO FLORAL 00008', '8.50', 14, 6, '', '170', 'M'),
+(274, 'SUPREMO FLORAL 00009', '8.50', 14, 6, '', '170', 'M'),
+(275, 'SUPREMO FLORAL 00010', '8.50', 14, 6, '', '170', 'M'),
+(276, 'SUPREMO FLORAL 00011', '8.50', 14, 6, '', '170', 'M'),
+(277, 'SUPREMO FLORAL 00012', '8.50', 14, 6, '', '170', 'M'),
+(278, 'SUPREMO FLORAL 00013', '8.50', 14, 6, '', '170', 'M'),
+(279, 'SUPREMO FLORAL 00014', '8.50', 14, 6, '', '170', 'M'),
+(280, 'SUPREMO FLORAL 00015', '8.50', 14, 6, '', '170', 'M'),
+(281, 'SUPREMO FLORAL 00016', '8.50', 14, 6, '', '170', 'M'),
+(282, 'SUPREMO FLORAL 00017', '8.50', 14, 6, '', '170', 'M'),
+(283, 'SUPREMO FLORAL 00018', '8.50', 14, 6, '', '170', 'M'),
+(284, 'SUPREMO FLORAL 00019', '8.50', 14, 6, '', '170', 'M'),
+(285, 'SUPREMO FLORAL 00020', '8.50', 14, 6, '', '170', 'M'),
+(286, 'SUPREMO FLORAL 00021', '8.50', 14, 6, '', '170', 'M'),
+(287, 'SUPREMO FLORAL 00022', '8.50', 14, 6, '', '170', 'M'),
+(288, 'SUPREMO FLORAL 00023', '8.50', 14, 6, '', '170', 'M'),
+(289, 'SUPREMO FLORAL 00024', '8.50', 14, 6, '', '170', 'M'),
+(290, 'SUPREMO FLORAL 00025', '8.50', 14, 6, '', '170', 'M'),
+(291, 'SUPREMO MESCLA 00026', '8.50', 14, 6, '', '170', 'M'),
+(292, 'SUPREMO FLORAL 00027', '8.50', 14, 6, '', '170', 'M'),
+(293, 'SUPREMO FLORAL 00028', '8.50', 14, 6, '', '170', 'M'),
+(294, 'SUPREMO FLORAL 00029', '8.50', 14, 6, '', '170', 'M'),
+(295, 'SUPREMO FLORAL 00030', '8.50', 14, 6, '', '170', 'M'),
+(296, 'SUPREMO FLORAL 00031', '8.50', 14, 6, '', '170', 'M'),
+(297, 'SUPREMO FLORAL 00032', '8.50', 14, 6, '', '170', 'M'),
+(298, 'SUPREMO FLORAL 00100', '8.50', 14, 6, '', '170', 'M'),
+(299, 'SUPREMO IRIS FASHION 00001', '10.00', 14, 6, '', '500', 'M'),
+(300, 'SUPREMO FASHION 00003', '10.00', 14, 6, '', '500', 'M'),
+(301, 'SUPREMO FASHION 00004', '10.00', 14, 6, '', '500', 'M'),
+(302, 'SUPREMO FASHION 00005', '10.00', 14, 6, '', '500', 'M'),
+(303, 'SUPREMO FASHION 00007', '10.00', 14, 6, '', '500', 'M'),
+(304, 'SUPREMO FASHION 00008', '10.00', 14, 6, '', '500', 'M'),
+(305, 'SUPREMO FASHION 00010', '10.00', 14, 6, '', '500', 'M'),
+(306, 'SUPREMO FASHION 00012', '10.00', 14, 6, '', '500', 'M'),
+(307, 'SUPREMO FASHION 00014', '10.00', 14, 6, '', '500', 'M'),
+(308, 'SUPREMO FASHION 00017', '10.00', 14, 6, '', '500', 'M'),
+(309, 'SUPREMO FASHION 00021', '10.00', 14, 6, '', '500', 'M'),
+(310, 'SUPREMO FASHION 00024', '10.00', 14, 6, '', '500', 'M'),
+(311, 'SUPREMO FASHION 00018', '10.00', 14, 6, '', '500', 'M'),
+(312, 'SUPREMO FASHION 00026', '10.00', 14, 6, '', '500', 'M'),
+(313, 'SUPREMO FASHION 00029', '10.00', 14, 6, '', '500', 'M'),
+(314, 'SUPREMO FASHION 00033', '10.00', 14, 6, '', '500', 'M'),
+(315, 'SUPREMO FASHION 00034', '10.00', 14, 6, '', '500', 'M'),
+(316, 'SUPREMO FASHION 00037', '10.00', 14, 6, '', '500', 'M'),
+(317, 'SUPREMO FASHION 00038', '10.00', 14, 6, '', '500', 'M'),
+(318, 'SUPREMO FASHION 00039', '10.00', 14, 6, '', '500', 'M'),
+(319, 'SUPREMO FASHION 00042', '10.00', 14, 6, '', '500', 'M'),
+(320, 'SUPREMO FASHION 00045', '10.00', 13, 6, '', '500', 'M'),
+(321, 'SUPREMO FASHION 00048', '10.00', 14, 6, '', '500', 'M'),
+(322, 'SUPREMO FASHION 00050', '10.00', 14, 6, '', '500', 'M'),
+(323, 'SUPREMO FASHION 00051', '10.00', 14, 6, '', '500', 'M'),
+(324, 'SUPREMO FASHION 00053', '10.00', 14, 6, '', '500', 'M'),
+(325, 'SUPREMO FASHION 00054', '10.00', 14, 6, '', '500', 'M'),
+(326, 'SUPREMO FASHION 00056', '10.00', 14, 6, '', '500', 'M'),
+(327, 'SUPREMO FASHION 00057', '10.00', 14, 6, '', '500', 'M'),
+(328, 'SUPREMO FASHION 00058', '10.00', 14, 6, '', '500', 'M'),
+(329, 'SUPREMO FASHION 00059', '10.00', 14, 6, '', '500', 'M'),
+(330, 'SUPREMO FASHION 00100', '10.00', 14, 6, '', '500', 'M'),
+(331, 'SUPREMO FASHION COM BRILHO 00001', '11.00', 14, 6, '', '500', 'M'),
+(332, 'SUPREMO FASHION COM BRILHO 00002', '11.00', 14, 6, '', '500', 'M'),
+(333, 'SUPREMO FASHION CO BRILHO 00003', '11.00', 14, 6, '', '500', 'M'),
+(334, 'SUPREMO FASHION COM BRILHO 00004', '11.00', 14, 6, '', '500', 'M'),
+(335, 'SUPREMO FASHION COM BRILHO 00005', '11.00', 14, 6, '', '500', 'M'),
+(336, 'SUPREMO FASHION  COM BRILHO 00006', '11.00', 14, 6, '', '500', 'M'),
+(337, 'SUPREMO FASHION COM BRILHO 00007', '11.00', 14, 6, '', '500', 'M'),
+(338, 'SUPREMO FASHION COM BRILHO 00008', '11.00', 14, 6, '', '500', 'M'),
+(339, 'SUPREMO FASHION COM BRILHO 00009', '11.00', 14, 6, '', '500', 'M'),
+(340, 'SUPREMO FASHION COM BRILHO 00010', '11.00', 14, 6, '', '500', 'M'),
+(341, 'SUPREMO FASHION COM BRILHO 00011', '11.00', 14, 6, '', '500', 'M'),
+(342, 'SUPREMO FLORES  BRILHO 00001', '12.00', 14, 7, '', '452', 'M'),
+(343, 'SUPREMO FLORES  BRILHO 00002', '12.00', 14, 7, '', '452', 'M'),
+(344, 'SUPREMO FLORES  BRILHO 00003', '12.00', 14, 7, '', '452', 'M'),
+(345, 'SUPREMO FLORES  BRILHO 00004', '12.00', 14, 7, '', '452', 'M'),
+(346, 'SUPREMO FLORES  BRILHO 00005', '12.00', 14, 7, '', '452', 'M'),
+(347, 'SUPREMO FLORES  BRILHO 00006', '12.00', 14, 7, '', '452', 'M'),
+(348, 'SUPREMO FLORES  BRILHO 00007', '12.00', 14, 7, '', '452', 'M'),
+(349, 'SUPREMO FLORES  BRILHO 00008', '12.00', 14, 7, '', '452', 'M'),
+(350, 'SUPREMO FLORES  BRILHO 00009', '12.00', 14, 7, '', '452', 'M'),
+(351, 'SUPREMO FLORES  BRILHO 00010', '12.00', 14, 7, '', '452', 'M'),
+(367, 'SUPREMO FLORES  BRILHO 00011', '12.00', 14, 7, '', '452', 'M'),
+(368, 'SUPREMO FLORES  BRILHO 00012', '12.00', 14, 7, '', '452', 'M'),
+(369, 'SUPREMO FLORES BRILHO 00013', '12.00', 14, 7, '', '452', 'M'),
+(370, 'SUPREMO FLORES BRILHO 00014', '12.00', 14, 7, '', '452', 'M'),
+(371, 'SUPREMO FLORES BRILHO 00015', '12.00', 14, 7, '', '452', 'M'),
+(372, 'SUPREMO ESMERALDA 00012', '5.20', 14, 6, '', '460', 'M'),
+(373, 'SUPREMO FLORES  BRILHO 00016', '12.00', 14, 6, '', '452', 'M'),
+(374, 'SUPREMO FLORES  BRILHO 00017', '12.00', 14, 7, '', '452', 'M'),
+(375, 'SUPREMO FLORES  BRILHO 00018', '12.00', 14, 7, '', '452', 'M'),
+(376, 'SUPREMO FLORES  BRILHO 00019', '12.00', 14, 7, '', '452', 'M'),
+(377, 'SUPREMO FLORES  BRILHO 00020', '12.00', 14, 7, '', '452', 'KG'),
+(378, 'SUPREMO FLORES  BRILHO 00021', '12.00', 14, 7, '', '452', 'M'),
+(379, 'SUPREMO FLORES  BRILHO 00022', '12.00', 14, 7, '', '452', 'M'),
+(380, 'SUPREMO FLORES  BRILHO 00023', '12.00', 14, 7, '', '452', 'M'),
+(381, 'SUPREMO FLORES  BRILHO 00024', '12.00', 14, 7, '', '452', 'M'),
+(382, 'SUPREMO FLORES  BRILHO 00025', '12.00', 14, 7, '', '452', 'KG'),
+(383, 'SUPREMO FLORES  BRILHO CRU N.4 00000', '18.00', 14, 7, '', '1186', 'M'),
+(384, 'SUPREMO FLORES CRU N. 6', '18.00', 14, 7, '', '795', 'M'),
+(385, 'SUPREMO FLORES  BRILHO CRU N.4 00000', '18.00', 14, 7, '', '1186', 'M'),
+(386, 'SUPREMO FLORES  BRILHO CRU N.6 00001', '18.00', 14, 7, '', '760', 'M'),
+(387, 'SUPREMO FLORES 00001', '9.50', 14, 7, '', '226', 'M'),
+(388, 'SUPREMO FLORES 00002', '9.50', 14, 7, '', '226', 'M'),
+(389, 'SUPREMO FLORES 00003', '9.50', 14, 7, '', '226', 'M'),
+(390, 'SUPREMO FLORES 00005', '9.50', 14, 7, '', '226', 'M');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos_informacoes_adicionais`
+--
+
+CREATE TABLE `produtos_informacoes_adicionais` (
+  `id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `st_cor` varchar(30) DEFAULT NULL,
+  `nr_codigo_cor` int(11) DEFAULT NULL,
+  `nr_numero_linha` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `produtos_informacoes_adicionais`
+--
+
+INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr_codigo_cor`, `nr_numero_linha`) VALUES
+(1, 2, 'CRU', NULL, 6),
+(2, 3, 'AZUL ROYAL', 2, 6),
+(3, 4, 'PALHA CLARO', 3, 6),
+(4, 5, 'CINZA', 4, 6),
+(5, 6, 'PRETO', 5, 6),
+(6, 7, 'VERMELHO', 6, 6),
+(7, 8, 'VERDE SOLDADO', 7, 6),
+(8, 9, 'MARROM', 8, 6),
+(9, 10, 'ROSA CLARO', 10, 6),
+(10, 11, 'BORDO', 11, 6),
+(11, 12, 'AMARELO CLARO', 12, 6),
+(12, 13, 'PINK', 13, 6),
+(13, 14, 'AZUL MARINHO', 15, 6),
+(14, 15, 'CHUMBO', 16, 6),
+(15, 16, 'MOSTARDA', 17, 6),
+(16, 17, 'AZUL CLARO', 18, 6),
+(17, 18, 'VERDE AGUA', 19, 6),
+(18, 19, 'AZUL TURQUESA', 20, 6),
+(19, 20, 'AMARELHO CANARO', 21, 6),
+(20, 21, 'VERDE ABACATE', 22, 6),
+(21, 22, 'LILAS', 23, 6),
+(22, 23, 'CENOURA', 24, 6),
+(23, 24, 'LARANJA', 25, 6),
+(24, 25, 'VERDE OLIVA', 27, 6),
+(25, 26, 'VINHO', 28, 6),
+(26, 27, 'ROXO', 29, 6),
+(27, 28, 'BRANCO COM VERMELHO', 31, 6),
+(28, 29, 'BRANCO COM AZUL ROYAL', 33, 6),
+(29, 30, 'BRANCO COM PRETO', 36, 6),
+(30, 31, 'AZUL CLARO COM AZUL ROYAL E AZ', 37, 6),
+(31, 32, 'BORDO PINK EROSA CLARO', 38, 6),
+(32, 33, 'AMARELO CANARIO CENOURA COM SA', 39, 6),
+(33, 34, 'ROSA MEDIO', 40, 6),
+(34, 35, 'VERDE BANDEIRA', 42, 6),
+(35, 36, 'AMARELO OURO', 46, 6),
+(36, 37, 'AZUL INDIGO', 47, 6),
+(37, 38, 'BRANCO CENOURA', 48, 6),
+(38, 39, 'BRANCO VERDE E ABACATE', 54, 6),
+(39, 40, 'GOIABA', 74, 6),
+(40, 41, 'CARAMELO', 75, 6),
+(41, 42, 'MARROM CLARO', 109, 6),
+(42, 43, 'MARROM CLARO,MARROM ESCURO ECR', 110, NULL),
+(43, 44, 'BRANCO LILAS E ROXO', 111, 6),
+(44, 45, 'BERINJELA', 112, NULL),
+(45, 46, 'VERDE JADE', 113, 6),
+(46, 47, 'BRANCO VERDE SOLDADO', 114, 6),
+(47, 48, 'BRANCO MARROM', 115, 6),
+(48, 49, 'PRETO CHUMBO E CINZA', 116, 6),
+(49, 50, 'ROSA NEON', 150, 6),
+(50, 51, 'VERDE LIMAO', 151, 6),
+(51, 52, 'VERDE NEON', 152, 6),
+(52, 53, 'LARANJA NEON', 153, NULL),
+(53, 54, 'AMARELO NEON', 154, 6),
+(54, 55, 'BRANCA', 1, 4),
+(55, 56, 'AZUL ROYAL', 2, 4),
+(56, 57, 'PALHA CLARO', 3, 4),
+(57, 58, 'CINZA', 4, 4),
+(58, 59, 'PRETO', 5, 4),
+(59, 60, 'VERMELHO', 6, 4),
+(60, 61, 'VERDE SOLDADO', 7, 4),
+(61, 62, 'MARROM', 8, 4),
+(62, 63, 'ROSA CLARO', 10, 4),
+(63, 64, 'BORDO', 11, 4),
+(64, 65, 'AMARELHO CLARO', 12, 4),
+(65, 66, 'PINK', 13, 4),
+(66, 67, 'AZUL MARINHO', 15, 4),
+(67, 68, 'CHUMBO', 16, 4),
+(68, 69, 'MOSTARDA', 17, 4),
+(69, 70, 'AZUL CLARO', 18, 4),
+(70, 71, 'VERDE AGUA', 19, 4),
+(71, 72, 'AZUL TURQUESA', 20, 4),
+(72, 73, 'AMARELO CANARIO', 21, 4),
+(73, 74, 'VERDE ABACATE', 22, 4),
+(74, 75, 'LILAS', 23, 4),
+(75, 76, 'CENOURA', 24, 4),
+(76, 77, 'LARANJA', 25, 4),
+(77, 78, 'VERDE OLIVA', 27, 4),
+(78, 79, NULL, 28, NULL),
+(79, 80, 'ROXO', 29, 4),
+(80, 81, 'BRANCO VERMELHO', 31, 4),
+(81, 82, 'BRANCO CENOURA', 33, 4),
+(82, 83, 'BRANCO PRETO', 36, 4),
+(83, 84, 'AZUL CLARO AZUL ROIAL AZUL MAR', 37, 4),
+(84, 85, 'BORDO PINK EROSA CLARO', 38, 4),
+(85, 86, 'AMARELO CANARIO CENOURA COM SA', 39, 4),
+(86, 87, 'ROSA MEDIO', 40, 4),
+(87, 88, 'VERDE BANDEIRA', 42, 4),
+(88, 89, 'AMARELO OURO', 46, 4),
+(89, 90, 'AZUL INDIGO', 47, 4),
+(90, 91, 'BRANCO CENORA', 48, 4),
+(91, 92, 'BANCO VERDE ABACATE', 54, 4),
+(92, 93, 'GOIABA', 74, 4),
+(93, 94, 'CARAMELO', 75, 4),
+(94, 95, 'MARROM CLARO', 109, 4),
+(95, 96, 'MARROM CLARO,MARROM ESCURO ECR', 110, 4),
+(96, 97, 'BRANCO LILAS ROXO', 111, 4),
+(97, 98, 'BERINJELA', 112, 4),
+(98, 99, 'VERDE JADE', 113, 4),
+(99, 100, 'BRANCO VERDE SOLDADO', 114, 4),
+(100, 101, 'BRANCO MARROM', 115, 4),
+(101, 102, 'PRETO CHUNBO CINZA', 116, 4),
+(102, 103, 'ROSA NEON', 150, 4),
+(103, 104, 'VERDE LIMAO', 151, 4),
+(104, 105, 'VERDE NEON', 152, 4),
+(105, 106, 'LARANJA NEON', 153, 4),
+(106, 107, 'AMARELHO MEON', 154, 4),
+(107, 108, 'BRANCA', 1, 6),
+(108, 109, 'AZUL ROYAL', 2, 6),
+(109, 110, 'CINZA', 4, 6),
+(110, 111, 'PRETO', 5, 6),
+(111, 112, 'BRANCA', 1, 6),
+(112, 113, 'AZUL ROYAL', 2, 6),
+(113, 114, 'CINZA', 4, 6),
+(114, 115, 'PRETO', 5, 6),
+(115, 116, 'VERMELHO', 6, 6),
+(116, 117, 'VERDE SOLDADO', 7, 6),
+(117, 118, 'MARROM', 8, 6),
+(118, 119, 'ROSA CLARO', 10, 6),
+(119, 120, 'BORDO', 11, 6),
+(120, 121, 'PINK', 13, 6),
+(121, 122, 'AZUL MARINHO', 15, 6),
+(122, 123, 'CHUMBO', 16, 6),
+(123, 124, 'AZUL CLARO', 18, 6),
+(124, 125, 'VERDE AGUA', 19, 6),
+(125, 126, 'AZUL CLARO', 20, 6),
+(126, 127, 'AMARELO CANARIO', 21, 6),
+(127, 128, 'VERDE ABACATE', 22, 6),
+(128, 129, 'LILAS', 23, 6),
+(129, 130, 'CENOURA', 24, 6),
+(130, 131, 'LARANJA', 25, 6),
+(131, 132, 'ROXO', 29, 6),
+(132, 133, 'BRANCO VERMELHO', 31, 6),
+(133, 134, 'BRANCO PRETO', 36, 6),
+(134, 135, 'BORDO PINK EROSA CLARO', 38, 6),
+(135, 136, 'ROSA MEDIO', 40, 6),
+(136, 137, 'VERDE BANDEIRA', 42, 6),
+(137, 138, 'AMARELO OURO', 46, 6),
+(138, 139, 'BRANCO VERDE E ABACATE', 54, 6),
+(139, 140, 'GOIABA', 74, 6),
+(140, 141, 'CARAMELO', 75, 6),
+(141, 142, 'MARROM CLARO', 109, 6),
+(142, 143, 'MARROM CLARO,MARROM ESCURO ECR', 110, 6),
+(143, 144, 'BRANCO LILAS E ROXO', 111, 6),
+(144, 145, 'BERINJELA', 112, 6),
+(145, 146, 'VERDE JADE', 113, 6),
+(146, 147, 'ROSA NEON', 150, 6),
+(147, 148, 'VERDE LIMAO', 151, 6),
+(148, 149, 'VERDE NEON', 152, 6),
+(149, 150, 'LARANJA NEON', 153, 6),
+(150, 151, 'AMARELO NEON', 154, 6),
+(151, 153, 'CRU', 0, 6),
+(152, 154, 'CRU', 0, 4),
+(153, 155, 'CRU', 0, 4),
+(154, 156, 'CRU', 0, 6),
+(155, 157, 'CRU', 0, 2),
+(156, 158, 'CRU', 0, 3),
+(157, 159, 'CRU', 0, 4),
+(158, 160, 'CRU', 0, 6),
+(159, 161, 'BRANCA', 1, 6),
+(160, 162, 'AZUL ROYAL', 2, 6),
+(161, 163, 'CINZA', 4, 6),
+(162, 164, 'PRETO', 5, 6),
+(163, 165, 'VERMELHO', 6, 6),
+(164, 166, 'MARROM', 8, 6),
+(165, 167, 'ROSA CLARO', 10, 6),
+(166, 168, 'BORDO', 11, 6),
+(167, 169, 'AMARELO CLARO', 12, 6),
+(168, 170, 'AZUL MARINHO', 13, 6),
+(169, 171, 'AZUL ROYAL', 18, 6),
+(170, 172, 'VERDE AGUA', 19, 6),
+(171, 173, 'AZUL TURQUESA', 20, 6),
+(172, 174, 'AMARELO CANARIO', 21, 6),
+(173, 175, 'VERDE ABACATE', 22, 6),
+(174, 176, 'LILAS', 23, 6),
+(175, 177, 'CENOURA', 24, 6),
+(176, 178, 'ROXO', 29, 6),
+(177, 179, 'VERDE BANDEIRA', 42, 6),
+(178, 180, 'MARROM CLARO', 109, 6),
+(179, 181, 'BERINJELA', 112, 6),
+(180, 182, 'VERDE JADE', 113, 6),
+(181, 183, 'CRU COM PRATA', 59, 6),
+(182, 184, 'CRU COM OURO', 60, 6),
+(183, 185, 'VERMELHO PRATA', 65, 6),
+(184, 186, 'VERMELHO OURO', 66, 6),
+(185, 187, 'BRANCO PRATA', 68, 6),
+(186, 188, 'CRU OURO', 60, 6),
+(187, 189, 'BRANCO OURO', 69, 6),
+(188, 190, 'AZUL ROYAL PRATA', 71, 6),
+(189, 191, 'VERDE ABACATE PRATA', 76, 6),
+(190, 192, 'VERDE ABACATE OURO', 77, 6),
+(191, 193, 'VERDE BANDEIRA VERDE', 81, 6),
+(192, 194, 'VERDE BANDEIRA PRATA', 82, 6),
+(193, 195, 'VERDE BANDEIRA OURO', 83, 6),
+(194, 196, 'VERMELHO VERMELHO', 93, 6),
+(195, 197, 'CENOURA PRATA', 95, 6),
+(196, 198, 'CENOURA OURO', 96, 6),
+(197, 199, 'PRETO PRATA', 98, 6),
+(198, 200, 'PRETO OURO', 99, 6),
+(199, 201, 'LILAS PRATA', 101, 6),
+(200, 202, 'LILAS ROXO', 102, 6),
+(201, 203, 'ROXO PRATA', 103, 6),
+(202, 204, 'ROSA CLARO PRATA', 104, 6),
+(203, 205, 'AMARELO CAN PRATA', 105, NULL),
+(204, 206, 'MARROM PRATA', 106, 6),
+(205, 207, 'BORDO PRATA', 108, 6),
+(206, 208, 'PINK PRATA', 127, 6),
+(207, 209, 'CHUMBO PRATA', 128, 6),
+(208, 210, 'BERINJELA PRATA', 129, 6),
+(209, 211, 'VERDE JADE PRATA', 130, 6),
+(210, 212, 'VERMELHO PRATA', 65, 4),
+(211, 213, 'VERMELHO OURO', 66, 4),
+(212, 214, 'BRANCO PRATA', 68, 4),
+(213, 215, 'BRANCA OURO', 69, 4),
+(214, 216, 'VERDE ABACATE PRATA', 76, 4),
+(215, 217, 'BRANCA', 1, 2),
+(216, 218, 'CREME', 2, 2),
+(217, 219, 'AMARELO BEBE', 3, 2),
+(218, 220, 'ROSA BEBE', 5, 2),
+(219, 221, 'GOIABA', 6, 2),
+(220, 222, 'CINZA', 7, 2),
+(221, 223, 'AZUL CLARO', 8, 2),
+(222, 224, 'VERDE AGUA', 10, 2),
+(223, 225, 'LARANJA', 12, 2),
+(224, 226, 'VERMELHO CARDEAL', 13, 2),
+(225, 227, 'VINHO', 14, 2),
+(226, 228, 'PRETO', 15, 2),
+(227, 229, 'BEGE', 16, 2),
+(228, 230, 'MARROM', 17, 2),
+(229, 231, 'LILAS', 18, 2),
+(230, 232, 'PINK', 19, 2),
+(231, 233, 'AMARELHO OURO', 20, 2),
+(232, 234, 'AZUL TURQUESA', 21, 2),
+(233, 235, 'VERMELHO SANGUE', 22, 2),
+(234, 236, 'AZUL ATLANTICO', 24, 2),
+(235, 237, 'RAMI', 39, 2),
+(236, 238, 'VERDE BANDEIRA', 50, 2),
+(237, 239, 'AZULAO', 59, 2),
+(238, 240, 'VERMELHO RUBI', 61, 2),
+(239, 241, 'VERDE PISTACHE', 64, 2),
+(240, 242, 'TUTTI FRUTTI', 65, 2),
+(241, 243, 'VIOLETA', 66, 2),
+(242, 244, 'VERDE LIMAO', 105, 2),
+(243, 245, 'ROXO', 106, 2),
+(244, 246, 'BRANCO OURO', 41, 2),
+(245, 247, 'PRETO OURO', 45, 2),
+(246, 248, 'VERMELHO CARDEAL OURO', 46, 2),
+(247, 249, 'BRANCO PRATA', 51, 2),
+(248, 250, 'AZUL CLARO PRATA', 52, 2),
+(249, 251, 'LILAS PRATA', 53, 2),
+(250, 252, 'PINK PRATA', 54, 2),
+(251, 253, 'PRETO PRATA', 55, 2),
+(252, 254, 'VERMELHO CARDEAL PRATA', 56, 2),
+(253, 255, 'AMARELO OURO PRATA', 57, 2),
+(254, 256, 'PISTACHE PRATA', 74, 2),
+(255, 257, 'PISTACHE OURO', 75, 2),
+(256, 258, 'LARANJA PRATA', 80, 2),
+(257, 259, 'AZULAO PRATA', 83, 2),
+(258, 260, 'ROXO PRATA', 84, 2),
+(259, 261, 'VERDE BANDEIRA PRATA', 85, 2),
+(260, 262, 'VERDE BANDEIRA OURO', 86, 2),
+(261, 263, 'VERMELHO RUBI PRATA', 87, 2),
+(262, 264, 'TUTTI FRUTI PRATA', 88, 2),
+(263, 265, 'VIOLETA PRATA', 89, 2),
+(264, 266, 'BRANCO', 1, 4),
+(265, 267, 'BEGE', 2, 4),
+(266, 268, 'PINK', 3, 4),
+(267, 269, 'ROSA MEDIO', 4, 4),
+(268, 270, 'LILAS', 5, 4),
+(269, 271, 'VERMELHA', 6, 4),
+(270, 272, 'TOMATE', 7, 4),
+(271, 273, 'CENOURA', 8, 4),
+(272, 274, 'LARANJA', 9, 4),
+(273, 275, 'AMARELO OURO', 10, 4),
+(274, 276, 'AMARELO', 11, 4),
+(275, 277, 'VERDE ABACATE', 12, 4),
+(276, 278, 'VERDE BANDEIRA', 13, 4),
+(277, 279, 'CACAU', 14, 4),
+(278, 280, 'MARROM', 15, 4),
+(279, 281, 'AZUL', 16, 4),
+(280, 282, 'PRETO', 17, 4),
+(281, 283, 'AZUL MESCLA', 18, 4),
+(282, 284, 'MOSTARDA MESCLA', 19, 4),
+(283, 285, 'AMARELO MESCLA', 20, 4),
+(284, 286, 'PINK MESCLA', 21, 4),
+(285, 287, 'VERMELHO MESCLA', 22, 4),
+(286, 288, 'BORDO MESCLA', 23, 4),
+(287, 289, 'ROXO MESCLA', 24, 4),
+(288, 290, 'MARROM MESCLA', 25, 4),
+(289, 291, 'LIMAO MESCLA', 26, 4),
+(290, 292, 'ABACATE MESCLA', 27, 4),
+(291, 293, 'MOSTARDA', 28, 4),
+(292, 294, 'VERDE LIMAO', 29, 4),
+(293, 295, 'VIOLETA', 30, 4),
+(294, 296, 'ROSA CLARO', 31, 4),
+(295, 297, 'TURQUESA', 32, 4),
+(296, 298, 'CRU', 100, 4),
+(297, 299, 'BRANCA', 1, NULL),
+(298, 300, 'SALMAO', 3, 2),
+(299, 301, 'CINZA', 4, 2),
+(300, 302, 'BEGE', 5, 2),
+(301, 303, 'CACAU', 7, 2),
+(302, 304, 'MARROM', 8, 2),
+(303, 305, 'PRETO', 10, 2),
+(304, 306, 'CENOURA', 12, 2),
+(305, 307, 'LARANJA', 14, 2),
+(306, 308, 'TOMATE', 17, 2),
+(307, 309, 'ROSA BEBE', 21, 2),
+(308, 310, 'PINK', 24, 2),
+(309, 311, 'RUBRO', 18, 2),
+(310, 312, 'ROSA FUCSIA', 26, 2),
+(311, 313, 'ROXO', 29, 2),
+(312, 314, 'AMARELO', 33, 2),
+(313, 315, 'AMARELO OURO', 34, 2),
+(314, 316, 'VERDE BANDEIRA', 37, 2),
+(315, 317, 'VERDE PISTACHE', 38, 2),
+(316, 318, 'VERDE PALMEIRA', 39, 2),
+(317, 319, 'LILAS', 42, 2),
+(318, 320, 'VERDE AGUA', 45, 2),
+(319, 321, 'TURQUESA', 48, 2),
+(320, 322, 'AZUL ROYAL', 50, 2),
+(321, 323, 'AZUL MESCLA', 51, 2),
+(322, 324, 'AMARELO MESCLA', 53, 2),
+(323, 325, 'PINK MESCLA', 54, 2),
+(324, 326, 'BORDO MESCLA', 56, 2),
+(325, 327, 'ROXO MESCLA', 57, 2),
+(326, 328, 'MARROM MESCLA', 58, 2),
+(327, 329, 'LIMAO MESCLA', 59, 2),
+(328, 330, 'NATURAL', 100, 2),
+(329, 331, 'BRANCO PRATA', 1, 2),
+(330, 332, 'BRANCO OURO', 2, 2),
+(331, 333, 'BEGE PRATA', 3, 2),
+(332, 334, 'BEGE OURO', 4, 2),
+(333, 335, 'PRETO PRATA', 5, 2),
+(334, 336, 'PRETO OURO', 6, 2),
+(335, 337, 'TOMATE PRATA', 7, 2),
+(336, 338, 'TOMATE OURO', 8, 2),
+(337, 339, 'AMARELO PRATA', 9, NULL),
+(338, 340, 'VERDE BANDEIRA PRATA', 10, 2),
+(339, 341, 'VERDE BANDEIRA OURO', 11, 2),
+(340, 342, 'ROSA NEON', 1, 6),
+(341, 343, 'LARANJA NEON PRATA', 2, 6),
+(342, 344, 'VERDE NEON', 3, 6),
+(343, 345, 'VERDE LIMAO NEON PRATA', 4, 6),
+(344, 346, 'CRU COM PRATA', 5, 6),
+(345, 347, 'CRU COM OURO', 6, 6),
+(346, 348, 'VERMELHO PRATA', 7, 6),
+(347, 349, 'VERMELHO OURO', 8, 6),
+(348, 350, 'BRANCO PRATA', 9, 6),
+(349, 351, 'BRANCO OURO', 10, 6),
+(365, 367, 'VERDE ABACATE/PRATA', 11, 6),
+(366, 368, 'VERDE BANDEIRA PRATA', 12, 6),
+(367, 369, 'PRETO PRATA', 13, 6),
+(368, 370, 'PRETO OURO', 14, 6),
+(369, 371, 'AMARELO CANáRIO/PRATA', 15, 6),
+(370, 372, 'AZUL', 12, 2),
+(371, 373, 'AZUL ROYAL PRATA', 16, 2),
+(372, 374, 'MARROM PRATA', 17, 2),
+(373, 375, 'MARROM CLARO PRATA', 18, 6),
+(374, 376, 'PINK PRATA', 19, 6),
+(375, 377, 'ROXO PRATA', 20, 6),
+(376, 378, 'VERDE BANDEIRA OURO', 21, 6),
+(377, 379, 'AZUL ROYAL OURO', 22, 6),
+(378, 380, 'AMARELO CANARIO OURO', 23, 6),
+(379, 381, 'ROSA NEON OURO', 24, 6),
+(380, 382, 'LARANJA NEON OURO', 25, 6),
+(381, 383, 'CRU', 0, 4),
+(382, 384, 'CRU', 0, 6),
+(383, 385, 'CRU', 0, 4),
+(384, 386, 'CRU BRILHO', 1, 6),
+(385, 387, 'BRANCO CENOURA AMARELO', 1, 6),
+(386, 388, 'BRANCO CENOURA', 2, 6),
+(387, 389, 'BRANCO TURQUESA CLARO', 3, 6),
+(388, 390, 'BRANCO ROXO ROSA', 5, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipos_produtos`
+--
+
+CREATE TABLE `tipos_produtos` (
+  `id` int(11) NOT NULL,
+  `st_descricao` varchar(80) NOT NULL,
+  `ch_informacao_adicionais` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tipos_produtos`
+--
+
+INSERT INTO `tipos_produtos` (`id`, `st_descricao`, `ch_informacao_adicionais`) VALUES
+(6, 'LINHA', 'S'),
+(7, 'BARBANTE', 'S'),
+(8, 'TINTA', 'S'),
+(9, 'MALHA', 'N'),
+(10, 'LAS', 'N'),
+(11, 'COLA', 'N'),
+(12, 'VERNIZ', 'S'),
+(13, 'OLEO', 'S'),
+(14, 'AGULHA', 'S'),
+(15, 'MASSA', 'N'),
+(16, 'FITA', 'N'),
+(17, 'SUPREMO COLORIDO', 'S');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vendas`
+--
+
+CREATE TABLE `vendas` (
+  `id` int(11) NOT NULL,
+  `dt_venda` date NOT NULL,
+  `vl_venda_valor_total` decimal(10,2) DEFAULT NULL,
+  `st_situacao` varchar(2) NOT NULL DEFAULT 'NC',
+  `st_pagamento` varchar(2) NOT NULL DEFAULT 'NP'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vendas_produtos`
+--
+
+CREATE TABLE `vendas_produtos` (
+  `id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `venda_id` int(11) NOT NULL,
+  `nr_quantidade_venda` int(11) NOT NULL,
+  `vl_item_venda` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `codigos_barras_produtos`
+--
+ALTER TABLE `codigos_barras_produtos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_CODIGOS_BARRAS_PRODUTOS` (`produto_id`);
+
+--
+-- Indexes for table `estoques`
+--
+ALTER TABLE `estoques`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_produtos_estoques` (`produto_id`);
+
+--
+-- Indexes for table `itens_notas`
+--
+ALTER TABLE `itens_notas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_notas_fiscais_itens_notas` (`nota_id`),
+  ADD KEY `fk_produtos_itens_notas` (`produto_id`);
+
+--
+-- Indexes for table `marcas`
+--
+ALTER TABLE `marcas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notas_fiscais`
+--
+ALTER TABLE `notas_fiscais`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nr_notas_vendas`
+--
+ALTER TABLE `nr_notas_vendas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_NR_NOTA_VENDA` (`venda_id`);
+
+--
+-- Indexes for table `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_marcas_produtos` (`marca_id`),
+  ADD KEY `fk_tipo_produtos_produtos` (`tipo_produto_id`);
+
+--
+-- Indexes for table `produtos_informacoes_adicionais`
+--
+ALTER TABLE `produtos_informacoes_adicionais`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_produtos_produtos_inf_add` (`produto_id`);
+
+--
+-- Indexes for table `tipos_produtos`
+--
+ALTER TABLE `tipos_produtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vendas`
+--
+ALTER TABLE `vendas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vendas_produtos`
+--
+ALTER TABLE `vendas_produtos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_vendas_prdutos` (`produto_id`),
+  ADD KEY `fk_vendas_vendas` (`venda_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `codigos_barras_produtos`
+--
+ALTER TABLE `codigos_barras_produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `estoques`
+--
+ALTER TABLE `estoques`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `itens_notas`
+--
+ALTER TABLE `itens_notas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `marcas`
+--
+ALTER TABLE `marcas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `notas_fiscais`
+--
+ALTER TABLE `notas_fiscais`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT for table `nr_notas_vendas`
+--
+ALTER TABLE `nr_notas_vendas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
+
+--
+-- AUTO_INCREMENT for table `produtos_informacoes_adicionais`
+--
+ALTER TABLE `produtos_informacoes_adicionais`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
+
+--
+-- AUTO_INCREMENT for table `tipos_produtos`
+--
+ALTER TABLE `tipos_produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `vendas`
+--
+ALTER TABLE `vendas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vendas_produtos`
+--
+ALTER TABLE `vendas_produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `codigos_barras_produtos`
+--
+ALTER TABLE `codigos_barras_produtos`
+  ADD CONSTRAINT `FK_CODIGOS_BARRAS_PRODUTOS` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+
+--
+-- Limitadores para a tabela `estoques`
+--
+ALTER TABLE `estoques`
+  ADD CONSTRAINT `fk_produtos_estoques` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+
+--
+-- Limitadores para a tabela `itens_notas`
+--
+ALTER TABLE `itens_notas`
+  ADD CONSTRAINT `fk_notas_fiscais_itens_notas` FOREIGN KEY (`nota_id`) REFERENCES `notas_fiscais` (`id`),
+  ADD CONSTRAINT `fk_produtos_itens_notas` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+
+--
+-- Limitadores para a tabela `nr_notas_vendas`
+--
+ALTER TABLE `nr_notas_vendas`
+  ADD CONSTRAINT `FK_NR_NOTA_VENDA` FOREIGN KEY (`venda_id`) REFERENCES `vendas` (`id`);
+
+--
+-- Limitadores para a tabela `produtos`
+--
+ALTER TABLE `produtos`
+  ADD CONSTRAINT `fk_marcas_produtos` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`),
+  ADD CONSTRAINT `fk_tipo_produtos_produtos` FOREIGN KEY (`tipo_produto_id`) REFERENCES `tipos_produtos` (`id`);
+
+--
+-- Limitadores para a tabela `produtos_informacoes_adicionais`
+--
+ALTER TABLE `produtos_informacoes_adicionais`
+  ADD CONSTRAINT `fk_produtos_produtos_inf_add` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+
+--
+-- Limitadores para a tabela `vendas_produtos`
+--
+ALTER TABLE `vendas_produtos`
+  ADD CONSTRAINT `fk_vendas_prdutos` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`),
+  ADD CONSTRAINT `fk_vendas_vendas` FOREIGN KEY (`venda_id`) REFERENCES `vendas` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

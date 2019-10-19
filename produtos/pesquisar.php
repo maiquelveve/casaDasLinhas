@@ -11,13 +11,21 @@
     </h1>
     <form>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label>Produto</label>
                 <input class="form-control" id="st_produto" name="st_produto" placeholder="Informe o produto">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label>Marca</label>
                 <input class="form-control" id="st_marca" name="st_marca" placeholder="Informe a marca">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Tem Código Barra?</label>
+                <select class="form-control" id="ch_codeBarra" name="ch_codeBarra">
+                    <option value="T">Todos</option>
+                    <option value="N">Não</option>
+                    <option value="S">Sim</option>
+                </select>
             </div>
         </div>
         <button type='button' id="button-listarProdutos" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>

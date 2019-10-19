@@ -20,11 +20,23 @@
                 $where .= " AND M.st_marca LIKE '%". $post['st_marca']. "%'";
             }
 
+            if ($post['ch_codeBarra'] == 'S') {
+                $where .= " AND C.produto_id IS NOT NULL";
+            } 
+
+            if($post['ch_codeBarra'] == 'N') {
+                $where .= " AND C.produto_id IS NULL";
+            }
+
             $sql = "SELECT P.id, P.st_produto, P.vl_valor_venda, M.st_marca, T.st_descricao, E.nr_quantidade "
-                 . "FROM produtos P "
-                 . "LEFT JOIN estoques E ON E.produto_id = P.id "
-                 . "INNER JOIN marcas M ON P.marca_id = M.id "
-                 . "INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id ". $where;
+                    ."FROM produtos P"
+                    .   " LEFT JOIN estoques E ON E.produto_id = P.id " 
+                    .   " INNER JOIN marcas M ON P.marca_id = M.id "
+                    .   " INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id "
+                    .   " LEFT JOIN codigos_barras_produtos C ON C.produto_id = P.id "  
+                    . $where
+                    ." GROUP BY P.id, C.produto_id "
+                    ." ORDER BY P.id";    
 
             try {
                 $statement = $this->conexaoBD->prepare($sql);

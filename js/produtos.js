@@ -11,12 +11,13 @@ $('document').ready(function(){
     $('#button-listarProdutos').click(function(){
         $('.div-resultado').hide();
         var produto = $('#st_produto').val();
-        var marca = $('#st_marca').val()
+        var marca = $('#st_marca').val();
+        var codeBarra = $('#ch_codeBarra').val()
         
         $.ajax({
             type:'POST',
             url: '../ajax/produtosAjax/pesquisarAjax.php',
-            data:{st_produto: produto, st_marca: marca},
+            data:{st_produto: produto, st_marca: marca, ch_codeBarra: codeBarra},
             success: function(resultado) {
                 $('#resultadoPesquisarProduto').html(resultado);
                 $('.div-resultado').show('fadein');

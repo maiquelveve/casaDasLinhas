@@ -56,11 +56,12 @@
                 <label>Medida</label>
                 <select class="form-control" id="st_medida" name="st_medida">
                     <option value="">Selecione</option>
-                    <option value="G" <?php echo ($post['st_medida'] == 'G' ? 'selected' : '')?>>Grama</option>
+                    <option value="G"  <?php echo ($post['st_medida'] == 'G' ? 'selected' : '')?>>Grama</option>
                     <option value="KG" <?php echo ($post['st_medida'] == 'KG' ? 'selected' : '')?>>Quilo</option>
-                    <option value="M" <?php echo ($post['st_medida'] == 'M' ? 'selected' : '')?>>Metro</option>
+                    <option value="M"  <?php echo ($post['st_medida'] == 'M' ? 'selected' : '')?>>Metro</option>
                     <option value="CM" <?php echo ($post['st_medida'] == 'CM' ? 'selected' : '')?>>Centimitro</option>
                     <option value="TM" <?php echo ($post['st_medida'] == 'TM' ? 'selected' : '')?>>Tamanho</option>
+                    <option value="ML" <?php echo ($post['st_medida'] == 'ML' ? 'selected' : '')?>>Ml</option>
                     <option value="PC" <?php echo ($post['st_medida'] == 'TM' ? 'selected' : '')?>>Pacote</option>
                 </select>
             </div>

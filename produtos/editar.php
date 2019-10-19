@@ -68,7 +68,8 @@
                     <option value="M"  <?= ($produto['st_medida'] == 'M' ? 'selected' : '')?>>Metro</option>
                     <option value="CM" <?= ($produto['st_medida'] == 'CM'? 'selected' : '')?>>Centimitro</option>
                     <option value="TM" <?= ($produto['st_medida'] == 'TM'? 'selected' : '')?>>Tamanho</option>
-                    <option value="PC" <?= ($produto['st_medida'] == 'TM'? 'selected' : '')?>>Pacote</option>
+                    <option value="ML" <?= ($produto['st_medida'] == 'ML'? 'selected' : '')?>>Ml</option>
+                    <option value="PC" <?= ($produto['st_medida'] == 'PC'? 'selected' : '')?>>Pacote</option>
                 </select>
             </div>
             <div class="form-group col-md-3">

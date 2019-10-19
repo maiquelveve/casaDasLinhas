@@ -62,7 +62,7 @@
                     <option value="CM" <?php echo ($post['st_medida'] == 'CM' ? 'selected' : '')?>>Centimitro</option>
                     <option value="TM" <?php echo ($post['st_medida'] == 'TM' ? 'selected' : '')?>>Tamanho</option>
                     <option value="ML" <?php echo ($post['st_medida'] == 'ML' ? 'selected' : '')?>>Ml</option>
-                    <option value="PC" <?php echo ($post['st_medida'] == 'TM' ? 'selected' : '')?>>Pacote</option>
+                    <option value="PC" <?php echo ($post['st_medida'] == 'PC' ? 'selected' : '')?>>Pacote</option>
                 </select>
             </div>
             <div class="form-group col-md-3">

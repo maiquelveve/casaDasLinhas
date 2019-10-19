@@ -55,8 +55,7 @@
                 break;    
 
                 //case do LINHA
-                case 14:  
-                ?>
+                case 14: ?>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>Espessura</label>
@@ -73,6 +72,21 @@
                     </div>
                 <?php
                 break;
+
+                //Case da Tinta
+                case 8: ?>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Código da Cor</label>
+                            <input class="form-control" id="nr_codigo_cor" name="nr_codigo_cor" value="<?= (isset($informacoesAdicionais['nr_codigo_cor']) && !empty($informacoesAdicionais['nr_codigo_cor'])) ? $informacoesAdicionais['nr_codigo_cor'] : '' ?>" placeholder="Informe a Código da Cor da Linha">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Cor</label>
+                            <input class="form-control" id="st_cor" name="st_cor" value="<?= (isset($informacoesAdicionais['st_cor']) && !empty($informacoesAdicionais['st_cor'])) ? $informacoesAdicionais['st_cor'] : '' ?>" placeholder="Informe a Cor da Linha">
+                        </div>
+                    </div>
+                <?php
+                break; 
             }
         }  
     }

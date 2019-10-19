@@ -140,7 +140,7 @@
                $erros[] = 'Selecione uma Unidade de Medida.';
             }
 
-            if($dados['st_medida'] != 'G' && $dados['st_medida'] != 'KG' && $dados['st_medida'] != 'M' && $dados['st_medida'] != 'CM' && $dados['st_medida'] != 'TM' && $dados['st_medida'] != '')  {
+            if($dados['st_medida'] != 'G' && $dados['st_medida'] != 'KG' && $dados['st_medida'] != 'M' && $dados['st_medida'] != 'CM' && $dados['st_medida'] != 'TM' && $dados['st_medida'] != 'PC' && $dados['st_medida'] != 'ML' && $dados['st_medida'] != '')  {
                $erros[] = 'Tipo de Medida invalido.';
             }
 

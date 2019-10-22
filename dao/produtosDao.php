@@ -21,11 +21,11 @@
             }
 
             if ($post['ch_codeBarra'] == 'S') {
-                $where .= " AND EXISTS (SELECT 1 FROM codigos_barras_produtos C ON C.produto_id = P.id)";
+                $where .= " AND EXISTS (SELECT 1 FROM codigos_barras_produtos C WHERE C.produto_id = P.id)";
             } 
 
             if($post['ch_codeBarra'] == 'N') {
-                $where .= " AND NOT EXISTS (SELECT 1 FROM codigos_barras_produtos C ON C.produto_id = P.id)";
+                $where .= " AND NOT EXISTS (SELECT 1 FROM codigos_barras_produtos C WHERE C.produto_id = P.id)";
             }
 
             $sql = "SELECT P.id, P.st_produto, P.vl_valor_venda, M.st_marca, T.st_descricao, E.nr_quantidade "
@@ -34,7 +34,6 @@
                     .   " INNER JOIN marcas M ON P.marca_id = M.id "
                     .   " INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id "
                     . $where
-                    ." GROUP BY P.id, C.produto_id "
                     ." ORDER BY P.id";    
 
             try {

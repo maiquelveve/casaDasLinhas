@@ -51,7 +51,36 @@
 		/*****************************************************************************/
 
 		/*AJUSTANDO O TAMANHO*/
-		$linha[9] = explode(' ', $linha[0]); 
+		//fiz na nes
+		//Tamanhos
+		$tamanho = explode(' ', $linha[0]);
+
+		if($tamanho[1] == 500 || $tamanho[1] == 1000) {
+			$linha['tamanho'] = $tamanho[1];
+			$linha['medida'] = "M";
+		}
+
+		if($tamanho[0] == 'CLEA' && $tamanho[1] == '5' && $tamanho[2] == 'PRATICA') {
+			$linha['tamanho'] = 1000;	
+			$linha['medida'] = "M";
+		}
+		
+		if(count($tamanho) == 7) {
+			if($tamanho[5] == 'SUSI') {
+				//$linha[0] = $tamanho[5]. ' ' . $tamanho[6];
+				$linha['tamanho'] = 200;
+				$linha['medida'] = "M";
+			}
+
+			if($tamanho[5] == 'MOLLET') {
+				//$linha[0] = $tamanho[5]. ' ' . $tamanho[6];
+				$auxT = explode('g', $tamanho[6]);
+				$linha['tamanho'] = $auxT[0];
+				$linha['medida'] = "G";
+			}
+		}
+
+		$linha[9] = $tamanho;
 
 		/*****************************************************************************/
 

@@ -10,6 +10,7 @@
 	}
 	fclose($file);
 	$cont = 0;
+	$r = 0;
 	foreach ($linhaArray as $linha) {
 		
 		if($cont > 3694) {
@@ -566,6 +567,7 @@
 		/*****************************************************************************/
 
 		/* SAIDA */
+		$r++;
 		echo '<pre>';
 			print_r($linha);
 		echo '</pre><br>';	
@@ -573,6 +575,4 @@
 		// 	print_r($tamanho);
 		// echo '</pre>';	
 	}
-	
-	die;
 ?>

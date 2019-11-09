@@ -581,5 +581,5 @@
 		echo '<pre>';
 			print_r($registro);
 		echo '</pre><br>';	
-	}
+	} 
 ?>

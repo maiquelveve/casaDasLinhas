@@ -11,6 +11,8 @@
 	fclose($file);
 	$cont = 0;
 	$r = 0;
+	$registros = array();
+
 	foreach ($linhaArray as $linha) {
 		
 		if($cont > 3694) {
@@ -566,13 +568,18 @@
 		$linha[10] = $cont++;
 		/*****************************************************************************/
 
-		/* SAIDA */
-		$r++;
+		$registros[$r]['st_produto'] = $linha[0];
+		$registros[$r]['st_codigo_cor'] = $linha[1];
+		$registros[$r]['st_codigo_barra'] = $linha[2];
+		$registros[$r]['st_tamanho'] = (isset($linha['tamanho']) ? $linha['tamanho'] : NULL);
+		$registros[$r]['st_medida'] = (isset($linha['medida']) ? $linha['medida'] : NULL);
+		$r++;		
+	}
+
+	//SAIDA
+	foreach($registros as $registro) {
 		echo '<pre>';
-			print_r($linha);
+			print_r($registro);
 		echo '</pre><br>';	
-		// echo '<pre>';
-		// 	print_r($tamanho);
-		// echo '</pre>';	
 	}
 ?>

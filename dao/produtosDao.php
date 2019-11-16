@@ -20,12 +20,16 @@
                 $where .= " AND M.st_marca LIKE '%". $post['st_marca']. "%'";
             }
 
-            if ($post['ch_codeBarra'] == 'S') {
+            if (isset($post['ch_codeBarra']) && $post['ch_codeBarra'] == 'S') {
                 $where .= " AND EXISTS (SELECT 1 FROM codigos_barras_produtos C WHERE C.produto_id = P.id)";
             } 
 
-            if($post['ch_codeBarra'] == 'N') {
+            if(isset($post['ch_codeBarra']) && $post['ch_codeBarra'] == 'N') {
                 $where .= " AND NOT EXISTS (SELECT 1 FROM codigos_barras_produtos C WHERE C.produto_id = P.id)";
+            }
+
+            if (isset($post['st_codigo_barra']) && !empty($post['st_codigo_barra'])) {
+                $where .= " AND CBP.st_codigo_barra = '". $post['st_codigo_barra'] . "'";
             }
 
             $sql = "SELECT P.id, P.st_produto, P.vl_valor_venda, M.st_marca, T.st_descricao, E.nr_quantidade "
@@ -33,9 +37,10 @@
                     .   " LEFT JOIN estoques E ON E.produto_id = P.id " 
                     .   " INNER JOIN marcas M ON P.marca_id = M.id "
                     .   " INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id "
+                    .   " LEFT JOIN codigos_barras_produtos CBP ON CBP.produto_id = P.id "
                     . $where
-                    ." ORDER BY P.id";    
-
+                    ." ORDER BY P.id LIMIT 50";    
+               
             try {
                 $statement = $this->conexaoBD->prepare($sql);
                 $statement->execute();

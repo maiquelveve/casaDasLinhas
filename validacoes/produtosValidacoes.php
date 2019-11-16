@@ -22,7 +22,11 @@
         }
 
         public function pesquisar($post) {
-            return $this->produtosDao->pesquisar($post);
+            try {
+                return $this->produtosDao->pesquisar($post);    
+            } catch (Exception $e) {
+                return 0;                
+            }
         }
 
         public function BuscarTodosProdutos() {

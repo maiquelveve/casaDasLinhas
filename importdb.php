@@ -568,12 +568,24 @@
 		$linha[10] = $cont++;
 		/*****************************************************************************/
 
+		if(trim($linha[0]) == 'BARROCO MAXCOLOR 4 (200G)') {
+			$nr_linha = 4;
+		} else if(trim($linha[0]) == 'BARROCO MAX COLOR 6 (400g)' || trim($linha[0]) == 'BARROCO MAXCOLOR 6 (200G)') {
+			$nr_linha = 6;
+		} else {
+			$nr_linha = NULL;
+		}
+		
+
 		$registros[$r]['st_produto'] = $linha[0];
 		$registros[$r]['st_codigo_cor'] = $linha[1];
 		$registros[$r]['st_codigo_barra'] = $linha[2];
 		$registros[$r]['st_tamanho'] = (isset($linha['tamanho']) ? $linha['tamanho'] : NULL);
 		$registros[$r]['st_medida'] = (isset($linha['medida']) ? $linha['medida'] : NULL);
-		$r++;		
+		$registros[$r]['nr_numero_linha'] = $nr_linha;
+			
+		$r++;	
+
 	}
 
 	require_once './config/constantes.php';
@@ -608,7 +620,7 @@
 			$prodInfAdd = array();
 			$prodInfAdd['st_cor'] = 'Não Informado';
 			$prodInfAdd['nr_codigo_cor'] = $registro['st_codigo_cor'];
-			$prodInfAdd['nr_numero_linha'] = 4;//segunda vez trocar para 6
+			$prodInfAdd['nr_numero_linha'] = $registro['nr_numero_linha'];
 
 			$produtosInfoAddValidacao->cadastrar($prodInfAdd, $produto);
 

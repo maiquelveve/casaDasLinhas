@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Nov-2019 às 15:07
+-- Generation Time: 16-Nov-2019 às 14:03
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -492,7 +492,25 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (504, '7898451137597', 1136),
 (505, '7898451137610', 1142),
 (506, '7898451137474', 1146),
-(507, '7898451131397', 1151);
+(507, '7898451131397', 1151),
+(508, '7898428611808', 1152),
+(509, '7898428604138', 1153),
+(510, '7898428601977', 1154),
+(511, '7898426003940', 1155),
+(512, '7898428602264', 1156),
+(513, '7898428602271', 1157),
+(514, '7898428602240', 1158),
+(515, '7898428604725', 1159),
+(516, '7898428603520', 1160),
+(517, '7898428604732', 1161),
+(518, '7898428613734', 1162),
+(519, '7898428613741', 1163),
+(520, '7898428609119', 1164),
+(521, '7898428609126', 1165),
+(522, '7898428609133', 1166),
+(523, '7898907440080', 1167),
+(524, '7898907440103', 1168),
+(525, '7898907440165', 1169);
 
 -- --------------------------------------------------------
 
@@ -542,7 +560,9 @@ INSERT INTO `marcas` (`id`, `st_marca`) VALUES
 (14, 'ENOVELAR'),
 (15, 'CORFIX'),
 (16, 'SPACCHI'),
-(17, 'PROGRESSO');
+(17, 'PROGRESSO'),
+(18, 'KERAMIK'),
+(19, 'FURTADO ELASTANO');
 
 -- --------------------------------------------------------
 
@@ -1737,7 +1757,25 @@ INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_
 (1148, 'EUROROMA BARBANTE 1.800 N6 1070', '34.00', 13, 7, '', '1800', 'KG'),
 (1149, 'EUROROMA BARBANTE 1.800 N6 1100', '34.00', 13, 7, '', '1800', 'KG'),
 (1150, 'EUROROMA BARBANTE 1.800 N6 1110', '34.00', 13, 7, '', '1800', 'KG'),
-(1151, 'EUROROMA BARBANTE 1.800 N6 6000', '34.00', 13, 7, '', '1800', 'KG');
+(1151, 'EUROROMA BARBANTE 1.800 N6 6000', '34.00', 13, 7, '', '1800', 'KG'),
+(1152, 'PINCEL 757', '8.50', 18, 18, '', '04', 'TM'),
+(1153, 'PINCEL 301', '8.50', 18, 18, '', '5/0', 'TM'),
+(1154, 'PINCEL 307', '3.00', 18, 17, '', '3/0', 'TM'),
+(1155, 'PINCEL 341', '9.50', 18, 18, '', '10', 'TM'),
+(1156, 'PINCEL 331CHANFRADO', '9.50', 18, 18, '', '10', 'TM'),
+(1157, 'PINCEI 331 CHANFRADO', '10.50', 18, 18, '', '12', 'TM'),
+(1158, 'PINCEL 331 CHANFRADO', '6.50', 18, 18, '', '06', 'TM'),
+(1159, 'PINCEL 917 N.6', '4.40', 18, 18, '', '06', 'TM'),
+(1160, 'PINCEL 916 N.4', '2.20', 18, 18, '', '04', 'TM'),
+(1161, 'PINCEL 917 N.8', '4.40', 18, 18, '', '08', 'TM'),
+(1162, 'PINCEL 230S N.2', '6.00', 18, 18, '', '02', 'TM'),
+(1163, 'PINCEL 230S 04', '5.50', 18, 18, '', '04', 'TM'),
+(1164, 'PINCEL 230S N.08', '6.50', 18, 18, '', '08', 'TM'),
+(1165, 'PINCEL 230S N.10', '7.50', 18, 18, '', '10', 'TM'),
+(1166, 'PINCEL 230S N.12', '8.50', 18, 18, '', '12', 'TM'),
+(1167, 'ELASTEX 501', '6.50', 19, 19, '', '10', 'ML'),
+(1168, 'ELASTEX 501 BEGE', '6.50', 19, 19, '', '10', 'ML'),
+(1169, 'ELASTEX 501 LILAS', '6.50', 19, 19, '', '10', 'M');
 
 -- --------------------------------------------------------
 
@@ -2890,7 +2928,25 @@ INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr
 (1145, 1148, 'MELANCIA', 1070, 6),
 (1146, 1149, 'MARROM', 1100, 6),
 (1147, 1150, 'BEGE', 1110, 6),
-(1148, 1151, 'JEANS', 6000, 6);
+(1148, 1151, 'JEANS', 6000, 6),
+(1149, 1152, NULL, NULL, NULL),
+(1150, 1153, NULL, NULL, NULL),
+(1151, 1154, NULL, NULL, NULL),
+(1152, 1155, NULL, NULL, NULL),
+(1153, 1156, NULL, NULL, NULL),
+(1154, 1157, NULL, NULL, NULL),
+(1155, 1158, NULL, NULL, NULL),
+(1156, 1159, NULL, NULL, NULL),
+(1157, 1160, NULL, NULL, NULL),
+(1158, 1161, NULL, NULL, NULL),
+(1159, 1162, NULL, NULL, NULL),
+(1160, 1163, NULL, NULL, NULL),
+(1161, 1164, NULL, NULL, NULL),
+(1162, 1165, NULL, NULL, NULL),
+(1163, 1166, NULL, NULL, NULL),
+(1164, 1167, NULL, NULL, NULL),
+(1165, 1168, NULL, NULL, NULL),
+(1166, 1169, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2920,7 +2976,9 @@ INSERT INTO `tipos_produtos` (`id`, `st_descricao`, `ch_informacao_adicionais`) 
 (14, 'AGULHA', 'S'),
 (15, 'MASSA', 'N'),
 (16, 'FITA', 'N'),
-(17, 'SUPREMO COLORIDO', 'S');
+(17, 'SUPREMO COLORIDO', 'S'),
+(18, 'PINCEL', 'S'),
+(19, 'ELASTICO', 'S');
 
 -- --------------------------------------------------------
 
@@ -3038,7 +3096,7 @@ ALTER TABLE `vendas_produtos`
 -- AUTO_INCREMENT for table `codigos_barras_produtos`
 --
 ALTER TABLE `codigos_barras_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=508;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=526;
 
 --
 -- AUTO_INCREMENT for table `estoques`
@@ -3056,7 +3114,7 @@ ALTER TABLE `itens_notas`
 -- AUTO_INCREMENT for table `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `notas_fiscais`
@@ -3074,19 +3132,19 @@ ALTER TABLE `nr_notas_vendas`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1170;
 
 --
 -- AUTO_INCREMENT for table `produtos_informacoes_adicionais`
 --
 ALTER TABLE `produtos_informacoes_adicionais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1149;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1167;
 
 --
 -- AUTO_INCREMENT for table `tipos_produtos`
 --
 ALTER TABLE `tipos_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `vendas`

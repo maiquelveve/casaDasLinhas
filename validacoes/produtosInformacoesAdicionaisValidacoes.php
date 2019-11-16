@@ -10,8 +10,12 @@
         }
 
         public function cadastrar($post, $produto_id) {
-            $post['produto_id'] = $produto_id;
-            return $this->produtosInformacoesAdicionaisDao->cadastrar($post); 
+            try {
+                $post['produto_id'] = $produto_id;
+                return $this->produtosInformacoesAdicionaisDao->cadastrar($post);     
+            } catch (Exception $e) {
+                throw new Exception($e);
+            }
         }
         
         public function editar ($post, $produto_id) {

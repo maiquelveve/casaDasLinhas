@@ -576,10 +576,59 @@
 		$r++;		
 	}
 
-	//SAIDA
-	foreach($registros as $registro) {
-		echo '<pre>';
-			print_r($registro);
-		echo '</pre><br>';	
-	} 
+	require_once './config/constantes.php';
+	require_once DIR_DAO .'produtosDao.php';
+	require_once DIR_VALIDACOES .'produtosInformacoesAdicionaisValidacoes.php';
+    require_once DIR_VALIDACOES .'produtosCodigoBarrasValidacoes.php';
+    require_once DIR_CONEXAOBD.'conexaoPDO.php';
+
+	$produtosDao = new ProdutosDao();
+	$produtosInfoAddValidacao = new ProdutosInformcoesAdicionaisValidacoes();
+	$produtosCodigoBarrasValidacoes = new ProdutosCodigoBarrasValidacoes();
+	$connexaoDB = ConexaoPDO::getInstance();
+	$rig = 0;
+		
+	try {
+		$connexaoDB->beginTransaction();
+
+		foreach($registros as $registro) {		
+			//cadastro do produto na tabela produto
+			$prod = array();
+			$prod['st_produto'] = $registro['st_produto'];
+			$prod['vl_valor_venda'] = 0;
+			$prod['marca_id'] = 12;
+			$prod['tipo_produto_id'] = 6;
+			$prod['st_observacao'] = '';
+			$prod['st_tamanho'] = $registro['st_tamanho'];
+			$prod['st_medida'] = $registro['st_medida'];
+
+			$produto = $produtosDao->cadastrar($prod);
+
+			//cadastro da informacoes add do produto na tabela produtos_inforamacoes
+			$prodInfAdd = array();
+			$prodInfAdd['st_cor'] = 'Não Informado';
+			$prodInfAdd['nr_codigo_cor'] = $registro['st_codigo_cor'];
+			$prodInfAdd['nr_numero_linha'] = 4;//segunda vez trocar para 6
+
+			$produtosInfoAddValidacao->cadastrar($prodInfAdd, $produto);
+
+			//cadastro da informacoes add do produto na tabela produtos_codigo_barra
+			$codeBar = $registro['st_codigo_barra'];
+			$produtosCodigoBarrasValidacoes->cadastrar($codeBar, $produto);
+			$rig++;
+
+			echo '<pre>';
+				print_r($registro);
+			echo '</pre><br>'. $rig;
+
+			//commit
+			if($rig >= 2072) {
+				$connexaoDB->commit();
+			}
+		} 	
+
+	} catch (Exception $e) {
+		$connexaoDB->rollback();
+		echo 'Houve um erro';
+	}
 ?>

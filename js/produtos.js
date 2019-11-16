@@ -34,6 +34,33 @@ $('document').ready(function(){
         produto_id = "";
         buscaInformacaoAdicionais(produto_id,tipo_produto_id);
     });
+
+    //Dá focus no campo do código de barras ao carregar a página de Pesquisar
+    $('#st_codigo_barra').focus();
+
+    //Faz aqui a troca dos formulários da tela de Pesquisar Produtos conforme o tipo da pesquisa
+    $('#ch_pesquisar_codigo_barras').click(function(){
+        $('#pesquisar-codigo_barra').show('fadein');
+        $('#pesquisar-manual').hide('fadein');
+
+        $('#button-listarProdutosCodigoBarras').show('fadein');
+        $('#button-listarProdutos').hide('fadein');
+
+        $('#st_codigo_barra').focus();
+        $('#st_produto').val('');
+        $('#st_marca').val('');
+        $('#ch_codeBarra').val('T');
+    });
+
+    $('#ch_pesquisar_manual').click(function(){
+        $('#pesquisar-manual').show('fadein');
+        $('#pesquisar-codigo_barra').hide('fadein');
+
+        $('#button-listarProdutosCodigoBarras').hide('fadein');
+        $('#button-listarProdutos').show('fadein');
+
+        $('#st_codigo_barra').val('');
+    });
 });
 
 /***************************************************/
@@ -41,6 +68,7 @@ $('document').ready(function(){
 /***************************************************/
 
 function buscaInformacaoAdicionais(produto_id, tipo_produto_id) {
+    
     if(tipo_produto_id > 0) {
         //Ajax que busca as informações adicionais e mostra o form delas
         $.ajax({
@@ -51,6 +79,27 @@ function buscaInformacaoAdicionais(produto_id, tipo_produto_id) {
                 $('#informacoesAdicionais').hide('fadeIn');
                 $('#informacoesAdicionais').html(resultado);
                 $('#informacoesAdicionais').show('fadeIn');
+            },
+            error: function () {
+                alert('Erro no Ajax Tipos Produtos Busca das Informações adicionais do produto.');
+            }
+        });
+    } else {
+        $('#informacoesAdicionais').hide('fadeIn');
+    }    
+}
+
+function buscaInformacaoAdicionaisCamposDisabled(produto_id, tipo_produto_id) {
+    if(tipo_produto_id > 0) {
+        //Ajax que busca as informações adicionais e mostra o form delas
+        $.ajax({
+            type: 'POST',
+            url: '../ajax/produtosInformacoesAdicionaisAjax/buscarProdutosInformacoesAdicionaisCamposDisabledAjax.php',
+            data: {produto_id: produto_id, tipo_produto_id: tipo_produto_id},
+            success: function (resultado) {
+                $('#informacoesAdicionaisDisabled').hide('fadeIn');
+                $('#informacoesAdicionaisDisabled').html(resultado);
+                $('#informacoesAdicionaisDisabled').show('fadeIn');
             },
             error: function () {
                 alert('Erro no Ajax Tipos Produtos Busca das Informações adicionais do produto.');

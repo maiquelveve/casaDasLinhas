@@ -36,22 +36,17 @@ $(document).ready(function(){
 
 
 	//***************************************************************************************************************//
-	//Consulta Produtos Por Código de Barras
-
-	//Dá focu no campo st_codigo_barras assim que abrir o modal
-	$('#modalConsultaCodigoBarras').on('shown.bs.modal', function () {
-    	$('#st_codigo_barra').focus();
-	}); 	
-
-	//Aqui quando o Código de Barra for lido pela pistola, o jquery executa o clique no botão addCodigoBarra e ja insere na tabela
+	//Consulta Produtos Por Código de Barras - as ações daqui são disparadas na tela de Pesquisar Produtos //
+	
+	//Aqui quando o Código de Barra for lido pela pistola executa o enter automaticamente, executado no Pesquisar Produto
 	$('#st_codigo_barra').keyup(function(e) {
         if(e.keyCode == 13) {
-        	$('#consultaProdutoCodigoBarra').trigger('click');
+        	$('.ch_pesquisar_codigo_barras').trigger('click');
         }   
     });
 
-    //Quando clica no botão $('#consultaProdutoCodigoBarra') pesquisa o produto pelo codigo de barras
-    $('#consultaProdutoCodigoBarra').click(function(){
+    //Quando clica no botão $('.ch_pesquisar_codigo_barras') Pesquisar Produto pelo codigo de barras
+    $('.ch_pesquisar_codigo_barras').click(function(){
     	let st_codigo_barra = $('#st_codigo_barra').val();
 
     	$.ajax({
@@ -61,8 +56,8 @@ $(document).ready(function(){
             success: function(resultado) {
                 $('#resultadoPesquisarProduto').html(resultado);
                 $('.div-resultado').show('fadein');
-                $('#modalConsultaCodigoBarras').modal('hide');
-                $('#st_codigo_barra').val('')
+                $('#st_codigo_barra').val('');
+                $('#st_codigo_barra').focus();
             },
             error: function() {
                 alert('Erro no Ajax Produtos pesquisar.');

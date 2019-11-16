@@ -4,6 +4,12 @@
     require_once DIR_CONFIG . 'tratamentoDados.php';
 
     $post = $_POST;
+
+    //Caso seja vazio o st_codigo_barra recebe texto pra não retornar nada, pq se ir vazio retorna todos os produtos
+    if(empty($post['st_codigo_barra'])) {
+        $post['st_codigo_barra'] = 'aalsudaskdj516';
+    }
+
     $produtosValidacoes = new produtosValidacoes();
     $produtos = $produtosValidacoes->pesquisar($post);
     $tratamentoDados = new TratamentoDados();

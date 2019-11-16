@@ -58,7 +58,7 @@
             <div class="form-group col-md-4">
                 <label>Produto</label>
                 <input class="form-control" id="st_produto" name="st_produto" value="<?php echo $produto['st_produto']?>" placeholder="Informe o Nome do Produto" disabled>
-                <input type="hidden" name="produto_id" value="<?= $id ?>" >                                                
+                <input type="hidden" name="produto_id" id="produto_id" value="<?= $id ?>" >                                                
             </div>
             <div class="form-group col-md-3">
                 <label>Tamanho</label>
@@ -111,7 +111,7 @@
                 <textarea class="form-control" rows="4" cols="15" placeholder="Observações!" name="st_observacao" disabled><?php echo $produto['st_observacao']?></textarea>
             </div>
         </div>
-        <div id="informacoesAdicionaisN"></div>
+        <div id="informacoesAdicionaisDisabled"></div>
 
         <!--parte que mostra os códigos de barras cadastrados-->
         <div class="form-row">
@@ -187,4 +187,12 @@
 </div>
 <script type="text/javascript">
     contCodBarra = <?= $i ?>
+</script>
+
+<script type="text/javascript">
+    let tipoProdutos = $('#tipo_produto_id').val();
+    let produto_id = $('#produto_id').val();
+    
+    buscaInformacaoAdicionaisCamposDisabled(produto_id, tipoProdutos);
+
 </script>

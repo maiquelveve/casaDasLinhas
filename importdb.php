@@ -590,7 +590,7 @@
 		
 	try {
 		$connexaoDB->beginTransaction();
-
+		set_time_limit(300);
 		foreach($registros as $registro) {		
 			//cadastro do produto na tabela produto
 			$prod = array();

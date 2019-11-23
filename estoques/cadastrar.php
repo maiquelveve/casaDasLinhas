@@ -10,8 +10,9 @@
     $alertsResultados = new AlertsResultados();
 
     if (isset($post) && !empty($post)) {
-        $post['produto_id'] = $_GET['id'];
-        $estoque = $estoquesValidacoes->cadastrar($post);
+        $itens[] = ['produto_id' => $_GET['id'], 'nr_quantidade' => $post['nr_quantidade']];
+        
+        $estoque = $estoquesValidacoes->verificaItemEstoque($itens);
         $mensagem = $alertsResultados->mensagemResultados($estoque, 'Estoque', 'Cadastrar');
     }
 

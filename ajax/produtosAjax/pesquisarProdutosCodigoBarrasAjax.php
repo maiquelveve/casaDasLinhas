@@ -41,6 +41,7 @@
                             <a class="btn btn-success" href="editar.php?id=<?php echo $p['id']?>"><i class="fa fa-pencil-alt"></i></a>
                             <a class="btn btn-primary btn-visualizar-produto" name="" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-search"></i></a>
                             <a class="btn btn-warning" href="../codigosBarrasProdutos/adicionar.php?id=<?php echo $p['id']?>"><i class="fa fa-barcode"></i></a>
+                            <a class="btn btn-dark" href="../estoques/cadastrar.php?id=<?php echo $p['id']?>"><i class="fas fa-cart-arrow-down"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

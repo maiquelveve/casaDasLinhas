@@ -20,11 +20,7 @@ class estoquesDao {
             $statement->execute();
             return 1;
         } catch (PDOException $e) {
-
-            echo '<pre>';
-            print_r($e->getMessage());
-            echo '</pre>';
-            return 0;
+            throw new Exception($e);
         }
     }
 

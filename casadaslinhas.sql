@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Nov-2019 às 17:38
+-- Generation Time: 23-Nov-2019 às 16:00
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -318,7 +318,6 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (322, '7898147027638', 869),
 (323, '7898147029052', 870),
 (324, '7898493505156', 871),
-(325, '7898907440165', 872),
 (326, '7279452721037', 415),
 (327, '7898147024132', 442),
 (328, '7898147024057', 873),
@@ -1055,7 +1054,6 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (1067, '7891113016148 ', 1711),
 (1068, '7891113016162 ', 1712),
 (1069, '1', 1713),
-(1070, 'Setar na mão o codebar', 1714),
 (1071, 'Setar na mão o codebar', 1715),
 (1072, 'Setar na mão o codebar', 1716),
 (1073, 'Setar na mão o codebar', 1717),
@@ -1077,7 +1075,6 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (1089, 'Setar na mão o codebar', 1733),
 (1090, 'Setar na mão o codebar', 1734),
 (1091, 'Setar na mão o codebar', 1735),
-(1092, 'Setar na mão o codebar', 1736),
 (1093, 'Setar na mão o codebar', 1737),
 (1094, 'Setar na mão o codebar', 1738),
 (1095, 'Setar na mão o codebar', 1739),
@@ -1690,12 +1687,12 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (1702, '7891113528672 ', 2346),
 (1703, '7891113657600 ', 2347),
 (1704, '7891113483629 ', 2348),
-(1705, '7891113404068 ', 2349);
-INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VALUES
+(1705, '7891113404068 ', 2349),
 (1706, '7891113528696 ', 2350),
 (1707, '7891113021494 ', 2351),
 (1708, '7891113527507 ', 2352),
-(1709, '7891113459471 ', 2353),
+(1709, '7891113459471 ', 2353);
+INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VALUES
 (1710, '7891113404099 ', 2354),
 (1711, '7891113459372 ', 2355),
 (1712, '7891113404112 ', 2356),
@@ -2583,7 +2580,30 @@ INSERT INTO `codigos_barras_produtos` (`id`, `st_codigo_barra`, `produto_id`) VA
 (2594, '7891113478373 ', 3238),
 (2595, '7891113015967 ', 3239),
 (2596, '7891113478397 ', 3240),
-(2597, '7891113512244 ', 3241);
+(2597, '7891113512244 ', 3241),
+(2600, 'Setar na mão o codebar', 1714),
+(2601, '7891113450010', 1714),
+(2615, '7891113451178', 1736),
+(2616, '7891113024525', 3242),
+(2617, '7891113024570', 3243),
+(2618, '7891113024624', 3244),
+(2619, '7891113024563', 3245),
+(2620, '7891113008457', 3246),
+(2621, '7891113008389', 3247),
+(2622, '7891113008372', 3248),
+(2623, '7891113650120', 3249),
+(2624, '7891113643467', 3250),
+(2625, '7891113008310', 3251),
+(2626, '7891113008327', 3252),
+(2627, '7891113522908', 3253),
+(2628, '7891113522762', 3254),
+(2629, '7891113522090', 3255),
+(2630, '7891113616171', 3256),
+(2631, '7896785445029', 3257),
+(2632, '7896785445050', 3258),
+(2633, '7896785445081', 3259),
+(2634, '7896785444992', 3260),
+(2635, '7898428613147', 3261);
 
 -- --------------------------------------------------------
 
@@ -5793,7 +5813,7 @@ INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_
 (3109, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3110, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3111, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
-(3112, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
+(3112, 'BARROCO MAXCOLOR 6 (200G)', '13.50', 12, 6, '', '200', 'G'),
 (3113, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3114, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3115, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
@@ -5814,7 +5834,7 @@ INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_
 (3130, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3131, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3132, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
-(3133, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
+(3133, 'BARROCO MAXCOLOR 6 (200G)', '13.50', 12, 6, '', '200', 'G'),
 (3134, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3135, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3136, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
@@ -5825,7 +5845,7 @@ INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_
 (3141, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3142, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3143, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
-(3144, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
+(3144, 'BARROCO MAXCOLOR 6 (200G)', '13.50', 12, 6, '', '200', 'G'),
 (3145, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3146, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3147, 'BARROCO MAXCOLOR 6 (200G) ', '0.00', 12, 6, '', '200', 'G'),
@@ -5922,7 +5942,27 @@ INSERT INTO `produtos` (`id`, `st_produto`, `vl_valor_venda`, `marca_id`, `tipo_
 (3238, 'BARROCO MAXCOLOR 4 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3239, 'BARROCO MAXCOLOR 4 (200G) ', '0.00', 12, 6, '', '200', 'G'),
 (3240, 'BARROCO MAXCOLOR 4 (200G) ', '0.00', 12, 6, '', '200', 'G'),
-(3241, 'BARROCO MAXCOLOR 4 (200G) ', '0.00', 12, 6, '', '200', 'G');
+(3241, 'BARROCO MAXCOLOR 4 (200G) ', '0.00', 12, 6, '', '200', 'G'),
+(3242, 'OLHO PRETO COR 14', '7.00', 12, 20, '', '14', 'TM'),
+(3243, 'OLHO PRETO COR 18', '7.00', 12, 20, '', '18', 'TM'),
+(3244, 'OLHO CASTANHO COR16', '7.00', 12, 20, '', '16', 'TM'),
+(3245, 'OLHO PRETO 16', '7.00', 12, 20, '', '16', 'TM'),
+(3246, 'OLHO AMARELO COR12', '7.00', 12, 20, '', '12', 'TM'),
+(3247, 'OLHO VERDE COR 10', '7.00', 12, 20, '', '10', 'TM'),
+(3248, 'OLHO VERDE COR 8', '7.00', 12, 20, '', '08', 'TM'),
+(3249, 'OLHO PRETO COR 8', '7.00', 12, 20, '', '08', 'TM'),
+(3250, 'OLHO CASTANHO COR 8', '7.00', 12, 20, '', '08', 'TM'),
+(3251, 'OLHO AZUL COR 08', '7.00', 12, 20, '', '08', 'TM'),
+(3252, 'OLHO AZUL COR 10', '7.00', 12, 20, '', '10', 'TM'),
+(3253, 'ANILHAS DE PLASTICO PACOTE COM 15 Pç', '4.50', 12, 21, '', '28', 'ML'),
+(3254, 'PLACA PARA MEADAS PACOTE COM 10 Pç', '40.50', 12, 23, '', '10', 'TM'),
+(3255, 'MARCADOR DE PONTO COM 20 Pç', '7.50', 12, 22, '', '10', 'TM'),
+(3256, 'AGULHA PONTO RUSSO TAMANHO 15', '7.00', 12, 14, '', '15', 'TM'),
+(3257, 'AGULHA DUPLA 9014 2UNIDADES', '9.60', 12, 14, '', '4MM', 'ML'),
+(3258, 'AGULHAS DE COSTURA 8011 2 UNIDADE', '9.60', 12, 14, '', '03', 'ML'),
+(3259, 'AGULHA DE COSTURA 9014 2UNIDADE', '9.60', 12, 14, '', '03', 'ML'),
+(3260, 'AGULHA DE COSTURA 8011 2 UNIDADES', '9.60', 12, 14, '', '04', 'ML'),
+(3261, 'ESTILETE 9MM', '2.00', 18, 24, '', '09', 'ML');
 
 -- --------------------------------------------------------
 
@@ -9038,7 +9078,7 @@ INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr
 (3106, 3109, 'Não Informado', 3501, 6),
 (3107, 3110, 'Não Informado', 3524, 6),
 (3108, 3111, 'Não Informado', 3526, 6),
-(3109, 3112, 'Não Informado', 3635, 6),
+(3109, 3112, 'VERMELHO', 3635, 6),
 (3110, 3113, 'Não Informado', 4004, 6),
 (3111, 3114, 'Não Informado', 4131, 6),
 (3112, 3115, 'Não Informado', 4456, 6),
@@ -9059,7 +9099,7 @@ INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr
 (3127, 3130, 'Não Informado', 6156, 6),
 (3128, 3131, 'Não Informado', 6375, 6),
 (3129, 3132, 'Não Informado', 6394, 6),
-(3130, 3133, 'Não Informado', 7136, 6),
+(3130, 3133, 'NãO INFORMADO', 7136, 6),
 (3131, 3134, 'Não Informado', 7207, 6),
 (3132, 3135, 'Não Informado', 7220, 6),
 (3133, 3136, 'Não Informado', 7259, 6),
@@ -9070,7 +9110,7 @@ INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr
 (3138, 3141, 'Não Informado', 7684, 6),
 (3139, 3142, 'Não Informado', 7727, 6),
 (3140, 3143, 'Não Informado', 7738, 6),
-(3141, 3144, 'Não Informado', 8001, 6),
+(3141, 3144, 'NãO INFORMADO', 8001, 6),
 (3142, 3145, 'Não Informado', 8088, 6),
 (3143, 3146, 'Não Informado', 8212, 6),
 (3144, 3147, 'Não Informado', 8323, 6),
@@ -9167,7 +9207,27 @@ INSERT INTO `produtos_informacoes_adicionais` (`id`, `produto_id`, `st_cor`, `nr
 (3235, 3238, 'Não Informado', 8001, 4),
 (3236, 3239, 'Não Informado', 8088, 4),
 (3237, 3240, 'Não Informado', 8212, 4),
-(3238, 3241, 'Não Informado', 8323, 4);
+(3238, 3241, 'Não Informado', 8323, 4),
+(3239, 3242, NULL, NULL, NULL),
+(3240, 3243, NULL, NULL, NULL),
+(3241, 3244, NULL, NULL, NULL),
+(3242, 3245, NULL, NULL, NULL),
+(3243, 3246, NULL, NULL, NULL),
+(3244, 3247, NULL, NULL, NULL),
+(3245, 3248, NULL, NULL, NULL),
+(3246, 3249, NULL, NULL, NULL),
+(3247, 3250, NULL, NULL, NULL),
+(3248, 3251, NULL, NULL, NULL),
+(3249, 3252, NULL, NULL, NULL),
+(3250, 3253, NULL, NULL, NULL),
+(3251, 3254, NULL, NULL, NULL),
+(3252, 3255, NULL, NULL, NULL),
+(3253, 3256, NULL, NULL, NULL),
+(3254, 3257, NULL, NULL, NULL),
+(3255, 3258, NULL, NULL, NULL),
+(3256, 3259, NULL, NULL, NULL),
+(3257, 3260, NULL, NULL, NULL),
+(3258, 3261, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9199,7 +9259,12 @@ INSERT INTO `tipos_produtos` (`id`, `st_descricao`, `ch_informacao_adicionais`) 
 (16, 'FITA', 'N'),
 (17, 'SUPREMO COLORIDO', 'S'),
 (18, 'PINCEL', 'S'),
-(19, 'ELASTICO', 'S');
+(19, 'ELASTICO', 'S'),
+(20, 'OLHO', 'S'),
+(21, 'ANILHAS', 'S'),
+(22, 'MARCADOR DE PONTO', 'S'),
+(23, 'PLACA', 'S'),
+(24, 'ESTILETE', 'S');
 
 -- --------------------------------------------------------
 
@@ -9317,7 +9382,7 @@ ALTER TABLE `vendas_produtos`
 -- AUTO_INCREMENT for table `codigos_barras_produtos`
 --
 ALTER TABLE `codigos_barras_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2598;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2636;
 
 --
 -- AUTO_INCREMENT for table `estoques`
@@ -9353,19 +9418,19 @@ ALTER TABLE `nr_notas_vendas`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3242;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3262;
 
 --
 -- AUTO_INCREMENT for table `produtos_informacoes_adicionais`
 --
 ALTER TABLE `produtos_informacoes_adicionais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3239;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3259;
 
 --
 -- AUTO_INCREMENT for table `tipos_produtos`
 --
 ALTER TABLE `tipos_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `vendas`

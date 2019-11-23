@@ -11,7 +11,11 @@ class estoquesValidacoes {
     }
 
     public function cadastrar($item) {
-        $this->estoquesDao->cadastrar($item);
+        try {
+            $this->estoquesDao->cadastrar($item);    
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
     }
 
     public function editar($item, $produto_id) {

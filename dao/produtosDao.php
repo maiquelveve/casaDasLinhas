@@ -9,18 +9,6 @@
             $this->conexaoBD = ConexaoPDO::getInstance();
         }
 
-        public function buscarProdutosIds() {
-            try {
-                $sql = "SELECT id FROM produtos ORDER BY id";
-                $statement = $this->conexaoBD->prepare($sql);
-                $statement->execute();
-                return $statement->fetchAll(PDO::FETCH_ASSOC);
-
-            } catch (Exception $e) {
-                throw new Exception($e);
-            }
-        }
-
         public function pesquisar($post) {
             $where = "WHERE 1=1";
 

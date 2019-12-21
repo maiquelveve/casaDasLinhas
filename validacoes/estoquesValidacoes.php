@@ -25,6 +25,7 @@ class estoquesValidacoes {
     public function verificaItemEstoque($itens) {
         foreach ($itens as $item) {
             $registroEstoque = $this->estoquesDao->verificaItemEstoque($item);
+            var_dump($registroEstoque);die;
             if ($registroEstoque) {
                 $item['nr_quantidade'] += $registroEstoque['nr_quantidade'];
                 $this->editar($item, $registroEstoque['produto_id']);

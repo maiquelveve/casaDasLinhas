@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <h4 class="card-title d-inline">Itens da Venda</h4>                                                
                         <div class="row mt-2">
-                            <input class="col-md-10 mx-3 form-control" id="st_codigo_barra" name="st_codigo_barra" value="st_codigo_barra" placeholder="Código de Barras" >
+                            <input class="col-md-10 mx-3 form-control codigo_barra" id="st_codigo_barra" name="st_codigo_barra" value="" placeholder="Código de Barras" >
                             <button type="button" class="btn btn-primary mx-4 col-md-1" id="addNovoItemVenda" data-toggle="modal" data-target="#modalSelecionaItemVenda" href="#">
                                <i class="fa fa-search"></i>
                             </button>                            

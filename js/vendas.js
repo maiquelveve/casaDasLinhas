@@ -207,6 +207,35 @@ $('document').ready(function() {
         $('#addItem-venda').prop("disabled", true);
     });
 
+    //****************************** Código de Add Item a Venda Só pelo Código de Barras ***************************************// 
+    
+    //Dá focus no campo do código de barras ao carregar a página de Pesquisar
+    $('#st_codigo_barra').focus();
+
+    //Aqui quando o Código de Barra for lido pela pistola executa o enter automaticamente, executado no Pesquisar Produto
+    $('#st_codigo_barra').keyup(function(e) {
+        if(e.keyCode == 13) {
+            let st_codigo_barra = $(this).val();
+        }   
+        
+        let produto_id = 0;
+
+        $.ajax({
+            type:'POST',
+            url: '../ajax/vendasAjax/buscarProdutoIdPeloCodeBarAjax.php',
+            data:{st_codigo_barra: st_codigo_barra},
+            success: function(resultado) {
+                produto_id = resultado;
+                alert(produto_id);
+            },
+            error: function() {
+                alert('Erro no Ajax Produtos pesquisar.');
+            }
+        });
+
+        //manda para o 
+
+    });
 
     //**********************************************************************************************************//
     //Ações referente ao valor total da venda soma dos valores dos itens da venda das telas de cadastrar/Editar//

@@ -63,7 +63,6 @@
 
         public function buscarProutoPeloCodigoBarras($st_codigo_barras) {
             try {
-                return 4345355;
                 return $this->produtosCodigoBarrasDao->buscarProutoPeloCodigoBarras($st_codigo_barras);
             } catch (Exception $e) {
                 return 0;

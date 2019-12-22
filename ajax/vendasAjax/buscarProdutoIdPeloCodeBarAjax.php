@@ -1,8 +1,8 @@
 <?php
 	require_once '../../config/constantes.php';
-    require_once DIR_VALIDACOES . 'produtosValidacoes.php';
+    require_once DIR_VALIDACOES . 'produtosCodigoBarrasValidacoes.php';
 
-    $produtosValidacoes = new ProdutosValidacoes();
-    $produto = $produtosValidacoes->buscarProutoPeloCodigoBarras($_POST['st_codigo_barras']);
-    echo $produto;
+    $produtosCodigoBarrasValidacoes = new produtosCodigoBarrasValidacoes();
+    $produto = $produtosCodigoBarrasValidacoes->buscarProutoPeloCodigoBarras($_POST['st_codigo_barra']);
+    echo $produto['produto_id'];
 ?>

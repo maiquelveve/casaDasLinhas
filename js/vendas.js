@@ -216,33 +216,37 @@ $('document').ready(function() {
     $('#st_codigo_barra').keyup(function(e) {
         if(e.keyCode == 13) {
             let st_codigo_barra = $(this).val();
-        }   
-        
-        let produto_id = 0;
 
-        $.ajax({
-            type:'POST',
-            url: '../ajax/vendasAjax/buscarProdutoIdPeloCodeBarAjax.php',
-            data:{st_codigo_barra: st_codigo_barra},
-            success: function(resultado) {
-                produto_id = resultado;
-                alert(produto_id);
-            },
-            error: function() {
-                alert('Erro no Ajax Produtos pesquisar.');
-            }
-        });
+            $.ajax({
+                type:'POST',
+                url: '../ajax/vendasAjax/buscarProdutoIdPeloCodeBarAjax.php',
+                data:{st_codigo_barra: st_codigo_barra},
+                success: function(resultado) {
+                    let produto_id = parseInt(resultado);
 
-        //manda para o 
+                    if(produto_id != 0) {
+                        var verificaItem = verificarItemJaSelecionado(produto_id);
 
+                        if (verificaItem == false) {
+                            addItemArray(produto_id);
+                            addNovoItemVendaAjax(produto_id);
+                        } else {
+                            alert("O item escolhido já está selecionado. Revise os items selecionados.");
+                        }
+                    } else {
+                        alert('Produto não encontrado pelo código de barras informados.');
+                    }
+                },
+                error: function() {
+                    alert('Erro no Ajax Vendas pesquisar.');
+                }
+            });    
+        }
     });
 
     //**********************************************************************************************************//
     //Ações referente ao valor total da venda soma dos valores dos itens da venda das telas de cadastrar/Editar//
     //*********************************************************************************************************//
-
-
-
 });
 
 //Função que vai add um novo item a venda, função chamada ao clicar no botão "#addItem-venda".

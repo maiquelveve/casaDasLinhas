@@ -11,8 +11,8 @@
 			$array[] = [
 							'st_produto' => 'Produto Genérico - '.'99' . str_replace('.', '', $valor), 
 							'vl_valor_venda' => $valor, 
-							'marca_id' => 100,
-							'tipo_produto_id' => 100,
+							'marca_id' => 23,
+							'tipo_produto_id' => 34,
 							'st_observacao' => '',
 							'st_tamanho' => '',
 							'st_medida' => '',

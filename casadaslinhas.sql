@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Jan-2020 às 14:08
+-- Generation Time: 10-Jan-2020 às 15:52
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -6020,7 +6020,8 @@ INSERT INTO `marcas` (`id`, `st_marca`) VALUES
 (18, 'KERAMIK'),
 (19, 'FURTADO ELASTANO'),
 (20, 'NYBC'),
-(21, 'LULITEX');
+(21, 'LULITEX'),
+(23, 'GENERICO');
 
 -- --------------------------------------------------------
 
@@ -12898,7 +12899,8 @@ INSERT INTO `tipos_produtos` (`id`, `st_descricao`, `ch_informacao_adicionais`) 
 (29, 'ALFINETE', 'S'),
 (30, 'FITA METRICA', 'S'),
 (31, 'CONTADOR DE PONTOS', 'S'),
-(32, 'RETROS PARA COSTURA', 'S');
+(32, 'RETROS PARA COSTURA', 'S'),
+(34, 'GENERICO', 'N');
 
 -- --------------------------------------------------------
 
@@ -13136,7 +13138,7 @@ ALTER TABLE `itens_notas`
 -- AUTO_INCREMENT for table `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `notas_fiscais`
@@ -13166,7 +13168,7 @@ ALTER TABLE `produtos_informacoes_adicionais`
 -- AUTO_INCREMENT for table `tipos_produtos`
 --
 ALTER TABLE `tipos_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `vendas`

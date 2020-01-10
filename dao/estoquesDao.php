@@ -43,24 +43,31 @@ class estoquesDao {
     }
 
     public function verificaItemEstoque($item) {
+        try {
+            $sql = "SELECT id, produto_id, nr_quantidade FROM estoques WHERE produto_id = :produto_id";
 
-        $sql = "SELECT id, produto_id, nr_quantidade FROM estoques WHERE produto_id = :produto_id";
+            $statement = $this->conexaoBD->prepare($sql);
+            $statement->bindValue(":produto_id", $item['produto_id'], PDO::PARAM_INT);
+            $statement->execute();
 
-        $statement = $this->conexaoBD->prepare($sql);
-        $statement->bindValue(":produto_id", $item['produto_id'], PDO::PARAM_INT);
-        $statement->execute();
+            $produtoEstoque = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $produtoEstoque = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $produtoEstoque;
+            return $produtoEstoque;    
+        } catch (Exception $e) {
+            throw new Exception($e); 
+        }
     }
 
     public function buscarItemDoEstoque($produto_id) {
-        $sql = "SELECT id, produto_id, nr_quantidade FROM estoques WHERE produto_id = :produto_id";
-        $statement = $this->conexaoBD->prepare($sql);
-        $statement->bindValue(":produto_id", $produto_id, PDO::PARAM_INT);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT id, produto_id, nr_quantidade FROM estoques WHERE produto_id = :produto_id";
+            $statement = $this->conexaoBD->prepare($sql);
+            $statement->bindValue(":produto_id", $produto_id, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);    
+        } catch (Exception $e) {
+           throw new Exception($e); 
+        }
     }
 
 }

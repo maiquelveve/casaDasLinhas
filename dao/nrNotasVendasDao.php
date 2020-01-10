@@ -20,10 +20,7 @@
                 return 1;
 
             } catch (Exception $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '<\pre>';
-                return 0;
+                throw new Exception($e);
             }
         }
 
@@ -36,10 +33,7 @@
                 return $statement->fetch(PDO::FETCH_ASSOC);
 
             } catch (Exception $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '<\pre>';
-                return 0;
+                throw new Exception($e);
             }
         }
 
@@ -54,10 +48,7 @@
                 return $statement->fetch(PDO::FETCH_ASSOC);
 
             } catch (Exception $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '<\pre>';
-                return 0;
+                throw new Exception($e);
             }
         }
     }

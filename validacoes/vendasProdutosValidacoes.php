@@ -13,7 +13,11 @@
         }
 
         public function cadastrar($itensVenda, $venda_id) {
-            return $this->vendasProdutosDao->cadastrar($itensVenda, $venda_id);
+            try {
+                return $this->vendasProdutosDao->cadastrar($itensVenda, $venda_id);    
+            } catch (Exception $e) {
+                throw new Exception($e);
+            }
         }
 
         public function editar ($itensVenda, $venda_id) {
@@ -23,14 +27,16 @@
                 return 1;
 
             } catch (PDOException $e) {
-                echo "<pre>";
-                    printf($e->getMessage());
-                echo "</pre>";
+                throw new Exception($e);
             }
         }
 
         public function buscarItensVenda($venda_id) {
-            return $this->vendasProdutosDao->buscarItensVenda($venda_id);
+            try {
+                return $this->vendasProdutosDao->buscarItensVenda($venda_id);
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function validacao($itens){

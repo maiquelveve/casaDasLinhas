@@ -23,11 +23,19 @@ class NotasFiscaisValidacoes {
     }
 
     public function pesquisar($post) {
-        return $this->notasFiscaisDao->pesquisar($post);
+        try {
+            return $this->notasFiscaisDao->pesquisar($post); 
+        } catch (Exception $e) {
+            return 0;            
+        }
     }
 
     public function quantidadeItensNota($id) {
-        return $this->notasFiscaisDao->quantidadeItensNota($id);
+        try {
+            return $this->notasFiscaisDao->quantidadeItensNota($id);    
+        } catch (Exception $e) {
+            return 0;    
+        }
     }
 
     public function cadastrar($post) {
@@ -38,21 +46,22 @@ class NotasFiscaisValidacoes {
 
         $erros = $this->validacao($post, $itensSelecionados);
 
-        if (count($erros) == 0) {
+        if (count($erros) > 0) {
+            return $erros;      
+        } 
+
+        try {
             //Inicia a transação para salvar
             $this->conexaoBD->beginTransaction();
 
-            try {
-                $nota_id = $this->notasFiscaisDao->cadastrar($post);
-                $itens = $this->itensValidacoes->cadastrar($itensSelecionados, $nota_id);
-                $this->conexaoBD->commit();
-                return 1;
-            } catch (PDOException $e) {
-                $this->conexaoBD->rollback();
-                return 0;
-            }
-        } else {
-            return $erros;
+            $nota_id = $this->notasFiscaisDao->cadastrar($post);
+            $itens = $this->itensValidacoes->cadastrar($itensSelecionados, $nota_id);
+            $this->conexaoBD->commit();
+            return 1;
+
+        } catch (PDOException $e) {
+            $this->conexaoBD->rollback();
+            return 0;
         }
     }
 
@@ -64,20 +73,21 @@ class NotasFiscaisValidacoes {
 
         $erros = $this->validacao($post, $itensSelecionados);
 
-        if (count($erros) == 0) {
+        if (count($erros) > 0) {
+            return $erros;
+        }
+
+        try {
             $this->conexaoBD->beginTransaction();
 
-            try {
-                $notaFiscal = $this->notasFiscaisDao->editar($post, $id);
-                $itens = $this->itensValidacoes->editar($itensCadastrados, $itensSelecionados, $id);
-                $this->conexaoBD->commit();
-                return 1;
-            } catch (PDOException $e) {
-                $this->conexaoBD->rollback();
-                return 0;
-            }
-        } else {
-            return $erros;
+            $notaFiscal = $this->notasFiscaisDao->editar($post, $id);
+            $itens = $this->itensValidacoes->editar($itensCadastrados, $itensSelecionados, $id);
+            $this->conexaoBD->commit();
+            return 1;
+
+        } catch (PDOException $e) {
+            $this->conexaoBD->rollback();
+            return 0;
         }
     }
 
@@ -97,8 +107,12 @@ class NotasFiscaisValidacoes {
     }
 
     public function buscarNotaFiscal($id) {
-        $notaFiscal = $this->notasFiscaisDao->buscarNotaFiscal($id);
-        return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($notaFiscal);
+        try {
+            $notaFiscal = $this->notasFiscaisDao->buscarNotaFiscal($id);
+            return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($notaFiscal);
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     public function itensSelecionadosParaNotaFiscal($post) {

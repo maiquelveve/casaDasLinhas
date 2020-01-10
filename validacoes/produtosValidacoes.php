@@ -30,7 +30,11 @@
         }
 
         public function BuscarTodosProdutos() {
-            return $this->produtosDao->BuscarTodosProdutos();
+            try {
+                return $this->produtosDao->BuscarTodosProdutos();    
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function cadastrar($post) {
@@ -90,20 +94,36 @@
         }
 
         public function buscarProduto($id) {
-            return $this->produtosDao->buscarProduto($id);
+            try {
+                return $this->produtosDao->buscarProduto($id);    
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function buscarTodosProdutosParaVenda() {
-            return $this->produtosDao->BuscarTodosProdutosParaVenda(); 
+            try {
+                return $this->produtosDao->BuscarTodosProdutosParaVenda(); 
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function buscarProdutoParaVenda($produto_id) {
-            $produtos = $this->produtosDao->buscarProdutoParaVenda($produto_id);
-            return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($produtos);     
+            try {
+                $produtos = $this->produtosDao->buscarProdutoParaVenda($produto_id);
+                return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($produtos);         
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function visualizar($id) {
-            return $this->produtosDao->visualizar($id);
+            try {
+                return $this->produtosDao->visualizar($id);
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         private function validacao($dados) {

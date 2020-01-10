@@ -41,6 +41,7 @@
         </div>
         <button type='button' id="button-listarVendas" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
         <a href="cadastrar.php"><button type='button' id="button-novaVenda" class="btn btn-dark"><i class="fa fa-plus-circle"></i> Nova Venda</button></a>
+        <a href="relatoriosVendas.php"><button type='button' id="button-relatoriosVendas" class="btn btn-success"><i class="far fa-file"></i> Relatórios de Vendas</button></a>
     </form>
     <div class="resultadoPesquisarVendas div-resultado" id="resultadoPesquisarVendas"></div>
 </div>

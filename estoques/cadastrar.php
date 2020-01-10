@@ -12,9 +12,11 @@
     if (isset($post) && !empty($post)) {
         $itens[] = ['produto_id' => $_GET['id'], 'nr_quantidade' => $post['nr_quantidade']];
         
-        $estoque = $estoquesValidacoes->verificaItemEstoque($itens);
+        $estoque = $estoquesValidacoes->adicionarQuantidadeEstoque($itens);
         $mensagem = $alertsResultados->mensagemResultados($estoque, 'Estoque', 'Cadastrar');
     }
+
+    $estoque = $estoquesValidacoes->buscarItemDoEstoque($_GET['id']);
 
     //variavel para analisar se já foi salvo o registro no banco, caso sim troca o botão salvar por criar no registro
     (isset($estoque) && !is_array($estoque) ?  $trocaBotao = 'cadastrado'  :  $trocaBotao = 'naoCadastrado');
@@ -34,8 +36,12 @@
     <form method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label>Quantidade</label>
-                <input class="form-control" id="nr_quantidade" name="nr_quantidade" value="<?php echo (isset($post['nr_quantidade']) && !empty($post['nr_quantidade']) ? $post['nr_quantidade'] : '')?>" placeholder="Informe a quantidade">
+                <label>Quantidade em Estoque</label>
+                <input class="form-control" id="nr_quantidade_atual" name="nr_quantidade_atual" value="<?php echo $estoque['nr_quantidade']?>" placeholder="" disabled>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Adicionar no Estoque</label>
+                <input class="form-control" id="nr_quantidade" name="nr_quantidade" value="" placeholder="Informe a quantidade">
             </div>
             <div class="form-group col-md-12">
                 <?php if ($trocaBotao != 'cadastrado') { ?>
@@ -43,7 +49,7 @@
                 <?php } else { ?>
                     <a href="cadastrar.php"><button type='button' class="btn btn-dark"><i class="fa fa-plus-circle"></i> Cadastra Uma Nova Marca</button></a>
                 <?php } ?>
-                <a href="pesquisar.php"><button type='button' id="button-novoProdutos" class="btn btn-info"> Voltar</button></a>
+                <a href="../produtos/pesquisar.php"><button type='button' id="button-novoProdutos" class="btn btn-info"> Voltar</button></a>
             </div>
         </div>
     </form>

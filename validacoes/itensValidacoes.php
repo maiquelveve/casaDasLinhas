@@ -13,22 +13,35 @@
         }
         
         public function cadastrar($itens, $nota_id) {
-            return $this->itensDao->cadastrar($itens, $nota_id);
+            try {
+                return $this->itensDao->cadastrar($itens, $nota_id);    
+            } catch (Exception $e) {
+                throw new Exception($e);
+            }
         }
     
         public function editar($itensCadastrados, $itensSelecionados, $nota_id) {
-            return $this->itensDao->editar($itensCadastrados, $itensSelecionados, $nota_id);
+            try {
+                return $this->itensDao->editar($itensCadastrados, $itensSelecionados, $nota_id);    
+            } catch (Exception $e) {
+                throw new Exception($e);    
+            }
         }
         
         public function buscarItensdaNotaFiscal($nota_id) {
-            $itens = $this->itensDao->buscarItensdaNotaFiscal($nota_id);
-            $itensTratadosParaTela = array();
-            
-            foreach ($itens as $item) {
-                $itensTratadosParaTela[] = $this->tratamentoDados->ajustarFormatosDeDadosParaTela($item);
+            try {
+                $itens = $this->itensDao->buscarItensdaNotaFiscal($nota_id);
+                $itensTratadosParaTela = array();
+                
+                foreach ($itens as $item) {
+                    $itensTratadosParaTela[] = $this->tratamentoDados->ajustarFormatosDeDadosParaTela($item);
+                }
+                
+                return $itensTratadosParaTela;    
+
+            } catch (Exception $e) {
+                return 0;
             }
-            
-            return $itensTratadosParaTela;
         }
         
         public function validacao ($itens) {

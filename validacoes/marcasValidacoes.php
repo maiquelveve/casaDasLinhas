@@ -14,28 +14,35 @@ class MarcasValidacoes {
     }
 
     public function cadastrar($post) {
+        try {
+            $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
 
-        $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
+            $erros = $this->validacao($post);
 
-        $erros = $this->validacao($post);
-
-        if (count($erros) == 0) {
-            return $this->marcasDao->cadastrar($post);
-        } else {
-            return $erros;
+            if (count($erros) == 0) {
+                return $this->marcasDao->cadastrar($post);
+            } else {
+                return $erros;
+            }    
+        } catch (Exception $e) {
+            return 0;    
         }
     }
 
     public function editar($post, $id) {
+        try {
+            $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
 
-        $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
+            $erros = $this->validacao($post);
 
-        $erros = $this->validacao($post);
+            if (count($erros) == 0) {
+                return $this->marcasDao->editar($post, $id);
+            } else {
+                return $erros;
+            }
 
-        if (count($erros) == 0) {
-            return $this->marcasDao->editar($post, $id);
-        } else {
-            return $erros;
+        } catch (Exception $e) {
+            return 0;
         }
     }
 
@@ -54,15 +61,27 @@ class MarcasValidacoes {
     }
 
     public function pesquisar($post) {
-        return $this->marcasDao->pesquisar($post);
+        try {
+            return $this->marcasDao->pesquisar($post);    
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     public function buscarMarcas($id) {
-        return $this->marcasDao->buscarMarcas($id);
+        try {
+            return $this->marcasDao->buscarMarcas($id);
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     public function buscarMarcasCombo() {
-        return $this->marcasDao->buscarMarcasCombo();
+        try {
+            return $this->marcasDao->buscarMarcasCombo();
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     public function validacao($dados) {

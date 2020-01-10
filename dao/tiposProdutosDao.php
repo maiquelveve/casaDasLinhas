@@ -18,9 +18,7 @@
                 $statement->execute();
                 return $statement->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo  '</pre>';
+                throw new Exception($e);
             }
         }
         
@@ -34,9 +32,7 @@
                 return $statement->fetch(PDO::FETCH_ASSOC);
 
             } catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo  '</pre>';
+                throw new Exception($e);
             }
         }
         
@@ -51,9 +47,7 @@
                 return $this->conexaoBD->lastInsertId();
                 
             } catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo  '</pre>';
+                throw new Exception($e);
             }
             
         }
@@ -70,9 +64,7 @@
                 return 1;
                 
             } catch(PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '</pre>';
+                throw new Exception($e);
             }
         }
         
@@ -85,9 +77,7 @@
                 return $statement->fetchAll(PDO::FETCH_ASSOC);
                 
             } catch(PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '</pre>';
+                throw new Exception($e);
             }
         }
 

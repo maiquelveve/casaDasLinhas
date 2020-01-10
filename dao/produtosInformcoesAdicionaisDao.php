@@ -78,9 +78,7 @@
                 return 1;
                 
             } catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '<pre>';                
+                throw new Exception($e);                
             }
         }
         
@@ -92,9 +90,7 @@
                 $statement->execute();
                 return $statement->fetch(PDO::FETCH_ASSOC);   
             } catch (Exception $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '<pre>';
+                throw new Exception($e);
             }
         }
     }

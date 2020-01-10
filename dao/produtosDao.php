@@ -64,46 +64,55 @@
                 return $statement->fetchAll(PDO::FETCH_ASSOC);
 
             } catch (PDOException $e){
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '</pre>';
+                throw new Exception($e);
             }
         }
 
         public function buscarTodosProdutosParaVenda() {
-            $sql ="SELECT P.id AS id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
+            try {
+                $sql ="SELECT P.id AS id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
                           T.id AS 'T_ID', T.st_descricao, T.ch_informacao_adicionais,
                           M.id AS 'M_ID', M.st_marca,
                           E.nr_quantidade,
                           I.st_cor, I.nr_codigo_cor, I.nr_numero_linha
                     FROM produtos P
-                       	INNER JOIN estoques E ON P.id = E.produto_id
+                        INNER JOIN estoques E ON P.id = E.produto_id
                         INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id
                         INNER JOIN marcas M ON P.marca_id = M.id
                         INNER JOIN produtos_informacoes_adicionais I ON P.id = I.produto_id";
 
-            $statement = $this->conexaoBD->prepare($sql);
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+                $statement = $this->conexaoBD->prepare($sql);
+                $statement->execute();
+                return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch (Exception $e) {
+                throw new Exception($e);    
+            }
         }
 
         public function buscarProdutoParaVenda($produto_id) {
-            $sql ="SELECT P.id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
+
+            try {
+                $sql ="SELECT P.id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
                           T.id AS 'T_ID', T.st_descricao, T.ch_informacao_adicionais,
                           M.id AS 'M_ID', M.st_marca,
                           E.nr_quantidade,
                           I.st_cor, I.nr_codigo_cor, I.nr_numero_linha
                     FROM produtos P
-                       	INNER JOIN estoques E ON P.id = E.produto_id
+                        INNER JOIN estoques E ON P.id = E.produto_id
                         INNER JOIN tipos_produtos T ON P.tipo_produto_id = T.id
                         INNER JOIN marcas M ON P.marca_id = M.id
                         INNER JOIN produtos_informacoes_adicionais I ON P.id = I.produto_id
                     WHERE P.id = :id";
 
-            $statement = $this->conexaoBD->prepare($sql);
-            $statement->bindValue(":id", $produto_id, PDO::PARAM_INT);
-            $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+                $statement = $this->conexaoBD->prepare($sql);
+                $statement->bindValue(":id", $produto_id, PDO::PARAM_INT);
+                $statement->execute();
+                return $statement->fetch(PDO::FETCH_ASSOC);
+
+            } catch (Exception $e) {
+                throw new Exception($e);    
+            }
         }
 
         public function cadastrar($post) {
@@ -145,9 +154,7 @@
                 return 1;
 
             } catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo  '</pre>';
+                throw new Exception($e);
             }
 
         }
@@ -161,16 +168,15 @@
                 $statement = $this->conexaoBD->prepare($sql);
                 $statement->execute();
                 return $statement->fetch(PDO::FETCH_ASSOC);
-            }
-            catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '</pre>';
+
+            } catch (PDOException $e) {
+                throw new Exception($e);
             }
         }
 
         public function visualizar($id) {
-          $sql = " SELECT P.id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
+            try {
+                $sql = " SELECT P.id, P.st_produto, P.st_tamanho, P.st_medida, P.tipo_produto_id, P.marca_id, P.vl_valor_venda, P.st_observacao,
                           T.id, T.st_descricao, T.ch_informacao_adicionais,
                           M.id, M.st_marca,
                           E.nr_quantidade,
@@ -182,15 +188,11 @@
                         INNER JOIN produtos_informacoes_adicionais I ON P.id = I.produto_id
                     WHERE P.id = ". $id;
 
-            try {
                 $statement = $this->conexaoBD->prepare($sql);
                 $statement->execute();
                 return $statement->fetch(PDO::FETCH_ASSOC);
-            }
-            catch (PDOException $e) {
-                echo '<pre>';
-                    print_r($e->getMessage());
-                echo '</pre>';
+            } catch (PDOException $e) {
+                throw new Exception($e);
             }
         }
     }

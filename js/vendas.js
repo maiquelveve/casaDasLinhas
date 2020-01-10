@@ -1,5 +1,12 @@
 $('document').ready(function() {
 
+
+    //Listar os Relatórios de Vendas
+    $('#button-relatoriosVendas').click(function() {
+        let dataInicial = $('#dt_venda_inicial').val();
+    });
+
+
     //ações referente a tela de confirmar venda
     //esconde a div do modal do confirmar o pagamento por cartão e misto
     $("#pagamentoCartao").hide();
@@ -223,8 +230,7 @@ $('document').ready(function() {
                 data:{st_codigo_barra: st_codigo_barra},
                 success: function(resultado) {
                     let produto_id = parseInt(resultado);
-
-                    if(produto_id != 0) {
+                    if(produto_id > 0) {
                         var verificaItem = verificarItemJaSelecionado(produto_id);
 
                         if (verificaItem == false) {

@@ -19,24 +19,41 @@ class estoquesValidacoes {
     }
 
     public function editar($item, $produto_id) {
-        $this->estoquesDao->editar($item, $produto_id);
+        try {
+            return $this->estoquesDao->editar($item, $produto_id);    
+        } catch (Exception $e) {
+            throw new Exception($e);    
+        }
+    }
+
+    //Essa função eh para add mais quatidade no item no estoque, a tela e acessada pelo produtos/pesquisar
+    public function adicionarQuantidadeEstoque($itens) {
+        try {
+            $this->verificaItemEstoque($itens);
+            return 1;
+        } catch (Exception $e) {
+            return 0;    
+        }
     }
 
     public function verificaItemEstoque($itens) {
-        foreach ($itens as $item) {
-            $registroEstoque = $this->estoquesDao->verificaItemEstoque($item);
-            var_dump($registroEstoque);die;
-            if ($registroEstoque) {
-                $item['nr_quantidade'] += $registroEstoque['nr_quantidade'];
-                $this->editar($item, $registroEstoque['produto_id']);
-            } else {
-                $this->cadastrar($item);
-            }
+        try {
+            foreach ($itens as $item) {
+                $registroEstoque = $this->estoquesDao->verificaItemEstoque($item);
+                
+                if ($registroEstoque) {
+                    $item['nr_quantidade'] += $registroEstoque['nr_quantidade'];
+                    $this->editar($item, $registroEstoque['produto_id']);
+                } else {
+                    $this->cadastrar($item);
+                }
+            }    
+        } catch (Exception $e) {
+            throw new Exception($e);     
         }
     }
     
     public function diminuirEstoque($itensVenda) {
-        
         try {
             foreach ($itensVenda as $item) {
                 $itemNoEstoque = $this->buscarItemDoEstoque($item['id']);            
@@ -52,9 +69,12 @@ class estoquesValidacoes {
 
     //FAZER O PESQUISAR PARA ALTERARR O ESQOTQUE
     public function buscarItemDoEstoque($produto_id) {
-        return $this->estoquesDao->buscarItemDoEstoque($produto_id);
+        try {
+            return $this->estoquesDao->buscarItemDoEstoque($produto_id);
+        } catch (Exception $e) {
+            return 0;
+        }
     }
-
 }
 
 ?>

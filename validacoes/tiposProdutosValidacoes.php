@@ -13,28 +13,36 @@
         }
         
         public function cadastrar($post) {
+            try {
+              $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
             
-            $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
-            
-            $erros = $this->validacao($post);
-            
-            if(count($erros) == 0) {
-                return $this->tiposProdutosDao->cadastrar($post);
-            } else {
-                return $erros;
+              $erros = $this->validacao($post);
+              
+              if(count($erros) > 0) {
+                return $erros;    
+              }
+                    
+              return $this->tiposProdutosDao->cadastrar($post);
+
+            } catch (Exception $e) {
+              return 0;
             }
         }
         
         public function editar($post, $id) {
+            try {
+              $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
             
-            $post = $this->tratamentoDados->ajustarFormatosDeDadosParaBanco($post);
+              $erros = $this->validacao($post);
             
-            $erros = $this->validacao($post);
-            
-            if(count($erros) == 0) {
-                return $this->tiposProdutosDao->editar($post, $id);
-            } else {
+              if(count($erros) > 0) {
                 return $erros;
+              } 
+            
+              return $this->tiposProdutosDao->editar($post, $id);
+
+            } catch (Exception $e) {
+              return 0;  
             }
         }
         

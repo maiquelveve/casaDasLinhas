@@ -59,21 +59,22 @@
 
             $validacaoVenda = $this->validacao($post, $itensSelecionados);
 
-            if(count($validacaoVenda) <= 0) {
-                $this->conexaoBD->beginTransaction();
-                try {
-                    $vendas = $this->vendasDao->cadastrar($post);
-                    $itensVenda = $this->vendasProdutosValidacoes->cadastrar($itensSelecionados, $vendas);
-                    $this->conexaoBD->commit();
-
-                    return $vendas;
-
-                } catch (PDOException $e) {
-                    $this->conexaoBD->rollback();
-                    return 0;
-                }
-            } else {
+            if(count($validacaoVenda) > 0) {
                 return $validacaoVenda;
+            } 
+
+            try {
+                $this->conexaoBD->beginTransaction();
+
+                $vendas = $this->vendasDao->cadastrar($post);
+                $itensVenda = $this->vendasProdutosValidacoes->cadastrar($itensSelecionados, $vendas);
+                $this->conexaoBD->commit();
+
+                return $vendas;
+
+            } catch (PDOException $e) {
+                $this->conexaoBD->rollback();
+                return 0;
             }
         }
 
@@ -83,21 +84,22 @@
 
             $validacaoVenda = $this->validacao($post, $itensVenda);
 
-            if(count($validacaoVenda) == 0) {
-                $this->conexaoBD->beginTransaction();
-                try{
-                    $vendas = $this->vendasDao->editar($post, $id);
-                    $itens = $this->vendasProdutosValidacoes->editar($itensVenda, $id);
-                    $this->conexaoBD->commit();
-
-                    return $vendas;
-
-                } catch (PDOException $e) {
-                    $this->conexaoBD->rollback();
-                    return 0;
-                }
-            } else {
+            if(count($validacaoVenda) > 0) {
                 return $validacaoVenda;
+            } 
+
+            try{
+                $this->conexaoBD->beginTransaction();
+                
+                $vendas = $this->vendasDao->editar($post, $id);
+                $itens = $this->vendasProdutosValidacoes->editar($itensVenda, $id);
+                $this->conexaoBD->commit();
+
+                return $vendas;
+
+            } catch (PDOException $e) {
+                $this->conexaoBD->rollback();
+                return 0;
             }
         }
 
@@ -126,20 +128,36 @@
         }
 
         public function cancelarVenda($id) {
-            return $this->vendasDao->cancelarVenda($id);
+            try {
+                return $this->vendasDao->cancelarVenda($id);
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function buscarTodasVendasHoje() {
-            return $this->vendasDao->buscarTodasVendasHoje();
+            try {
+                return $this->vendasDao->buscarTodasVendasHoje();
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function quantidadeItensVenda($id) {
-            return $this->vendasDao->quantidadeItensVenda($id);
+            try {
+                return $this->vendasDao->quantidadeItensVenda($id);
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function buscarVenda($id) {
-            $venda = $this->vendasDao->buscarVenda($id);
-            return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($venda);
+            try {
+                $venda = $this->vendasDao->buscarVenda($id);
+                return $this->tratamentoDados->ajustarFormatosDeDadosParaTela($venda);    
+            } catch (Exception $e) {
+                return 0;
+            }
         }
 
         public function itensSelecionadosParaVenda($post) {

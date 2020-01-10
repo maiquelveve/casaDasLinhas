@@ -19,11 +19,19 @@
         }
         
         public function editar ($post, $produto_id) {
-            return $this->produtosInformacoesAdicionaisDao->editar($post, $produto_id);
+            try {
+                return $this->produtosInformacoesAdicionaisDao->editar($post, $produto_id);
+            } catch (Exception $e) {
+                throw new Exception($e);    
+            }
         }
         
         public function buscarInformacoesAdicionais($produto_id) {
-            return $this->produtosInformacoesAdicionaisDao->buscarInformacoesAdicionais($produto_id); 
+            try {
+                return $this->produtosInformacoesAdicionaisDao->buscarInformacoesAdicionais($produto_id);     
+            } catch (Exception $e) {
+                return 0;
+            }
         }
         
         public function validacao($dados) {

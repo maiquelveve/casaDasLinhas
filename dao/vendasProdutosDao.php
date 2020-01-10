@@ -21,39 +21,35 @@
 					$statement->bindValue(":vl_item_venda", $item['vl_item_venda'], PDO::PARAM_STR);
 					$statement->execute();
 				} catch(PDOException $e) {
-					echo "<pre>";
-						printf($e->getMessage());
-					echo "</pre>";
+					throw new Exception($e);
 				}
 			}
 		}
 
-                public function excluir($itensVenda, $venda_id) {
-                    $sql = "DELETE FROM vendas_produtos WHERE venda_id = :venda_id";
+        public function excluir($itensVenda, $venda_id) {
+            $sql = "DELETE FROM vendas_produtos WHERE venda_id = :venda_id";
 
-                    try {
-                      $statement = $this->conexaoBD->prepare($sql);
-                      $statement->bindValue(":venda_id", $venda_id, PDO::PARAM_INT);
-                      $statement->execute();
-                      return 1;
+            try {
+              $statement = $this->conexaoBD->prepare($sql);
+              $statement->bindValue(":venda_id", $venda_id, PDO::PARAM_INT);
+              $statement->execute();
+              return 1;
 
-                    } catch(PDOException $e) {
-                        echo "<pre>";
-                            printf($e->getMessage());
-                        echo "</pre>";
-                    }
-                }
+            } catch(PDOException $e) {
+                throw new Exception($e);
+            }
+        }
 
 		public function buscarItensVenda($venda_id) {
-                        $sql = "SELECT P.id, P.st_produto, P.vl_valor_venda,
-                                       M.st_marca,
-                                       E.nr_quantidade,
-                                       VP.nr_quantidade_venda, VP.vl_item_venda, VP.venda_id
-                                FROM vendas_produtos VP
-                                    INNER JOIN produtos P ON VP.produto_id = P.id
-                                    INNER JOIN estoques E ON P.id = E.produto_id
-                                    INNER JOIN marcas M ON M.id = P.marca_id
-                                WHERE venda_id = :venda_id";
+            $sql = "SELECT P.id, P.st_produto, P.vl_valor_venda,
+                           M.st_marca,
+                           E.nr_quantidade,
+                           VP.nr_quantidade_venda, VP.vl_item_venda, VP.venda_id
+                    FROM vendas_produtos VP
+                        INNER JOIN produtos P ON VP.produto_id = P.id
+                        INNER JOIN estoques E ON P.id = E.produto_id
+                        INNER JOIN marcas M ON M.id = P.marca_id
+                    WHERE venda_id = :venda_id";
 
 			try{
 				$statement = $this->conexaoBD->prepare($sql);
@@ -62,9 +58,7 @@
 				return $statement->fetchAll(PDO::FETCH_ASSOC);
 
 			} catch(PDOException $e) {
-				echo '<pre>';
-					printf($e->getMessage());
-				echo '<pre>';
+				throw new Exception($e);
 			}
 		}
 	}

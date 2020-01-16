@@ -21,6 +21,14 @@
             $this->conexaoBD = ConexaoPDO::getInstance();
         }
 
+        public function buscarProdutosIds($idInicial = 0) {
+            try {
+                return $this->produtosDao->buscarProdutosIds($idInicial);
+            } catch (Exception $e) {
+                return 0;
+            }
+        }
+
         public function pesquisar($post) {
             try {
                 return $this->produtosDao->pesquisar($post);    

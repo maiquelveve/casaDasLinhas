@@ -9,6 +9,24 @@
             $this->conexaoBD = ConexaoPDO::getInstance();
         }
 
+        public function buscarProdutosIds($idInicial) {
+            try {
+                $where = "WHERE 1=1";
+
+                if ($idInicial > 0) {
+                    $where .= " AND id >= ". $idInicial;
+                }
+
+                $sql = "SELECT id FROM produtos ". $where;
+                $statement = $this->conexaoBD->prepare($sql);
+                $statement->execute();
+                return $statement->fetchAll(PDO::FETCH_ASSOC);
+                    
+            } catch (Exception $e) {
+                throw new Exception($e);
+            }
+        }
+
         public function pesquisar($post) {
             $where = "WHERE 1=1";
 

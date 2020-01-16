@@ -8,8 +8,9 @@
 	$estoquesValidacoes = new EstoquesValidacoes();	
 	$connexaoDB = ConexaoPDO::getInstance();
 
-	$produtosIds = $produtosValidacoes->buscarProdutosIds();
-	$qt = 10;
+	$produtosIds = $produtosValidacoes->buscarProdutosIds(3297);
+
+	$qt = 25;
 	$item = array();	
 
 	try {

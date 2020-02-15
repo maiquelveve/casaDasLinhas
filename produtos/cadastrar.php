@@ -56,13 +56,13 @@
                 <label>Medida</label>
                 <select class="form-control" id="st_medida" name="st_medida">
                     <option value="">Selecione</option>
-                    <option value="G"  <?php echo ($post['st_medida'] == 'G' ? 'selected' : '')?>>Grama</option>
-                    <option value="KG" <?php echo ($post['st_medida'] == 'KG' ? 'selected' : '')?>>Quilo</option>
-                    <option value="M"  <?php echo ($post['st_medida'] == 'M' ? 'selected' : '')?>>Metro</option>
-                    <option value="CM" <?php echo ($post['st_medida'] == 'CM' ? 'selected' : '')?>>Centimitro</option>
-                    <option value="TM" <?php echo ($post['st_medida'] == 'TM' ? 'selected' : '')?>>Tamanho</option>
-                    <option value="ML" <?php echo ($post['st_medida'] == 'ML' ? 'selected' : '')?>>Ml</option>
-                    <option value="PC" <?php echo ($post['st_medida'] == 'PC' ? 'selected' : '')?>>Pacote</option>
+                    <option value="G"  <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'G' ? 'selected' : '')?>>Grama</option>
+                    <option value="KG" <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'KG' ? 'selected' : '')?>>Quilo</option>
+                    <option value="M"  <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'M' ? 'selected' : '')?>>Metro</option>
+                    <option value="CM" <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'CM' ? 'selected' : '')?>>Centimitro</option>
+                    <option value="TM" <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'TM' ? 'selected' : '')?>>Tamanho</option>
+                    <option value="ML" <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'ML' ? 'selected' : '')?>>Ml</option>
+                    <option value="PC" <?php echo (isset($post['st_medida']) && $post['st_medida'] == 'PC' ? 'selected' : '')?>>Pacote</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
@@ -76,7 +76,7 @@
                 <select class="form-control" id="tipo_produto_id" name="tipo_produto_id">
                     <option value="">Selecione o Tipo</option>
                     <?php foreach($tiposProdutos as $tipo) : ?>
-                        <option value="<?php echo $tipo['id']?>" <?php echo ($post['tipo_produto_id'] == $tipo['id'] ? 'selected' : '')?>><?php echo $tipo['st_descricao']?></option>
+                        <option value="<?php echo $tipo['id']?>" <?php echo (isset($post['tipo_produto_id']) && $post['tipo_produto_id'] == $tipo['id'] ? 'selected' : '')?>><?php echo $tipo['st_descricao']?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -85,7 +85,7 @@
                 <select class="form-control" id="marca_id" name="marca_id">
                     <option value="">Escolha a Marca</option>
                     <?php foreach($marcas as $marca) : ?>
-                        <option value="<?php echo $marca['id']?>" <?php echo ($post['marca_id'] == $marca['id'] ? 'selected' : '')?>><?php echo $marca['st_marca']?></option>
+                        <option value="<?php echo $marca['id']?>" <?php echo (isset($post['marca_id']) && $post['marca_id'] == $marca['id'] ? 'selected' : '')?>><?php echo $marca['st_marca']?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

@@ -38,6 +38,7 @@ class estoquesValidacoes {
 
     public function verificaItemEstoque($itens) {
         try {
+            //var_dump($itens);die('aqui');
             foreach ($itens as $item) {
                 $registroEstoque = $this->estoquesDao->verificaItemEstoque($item);
                 

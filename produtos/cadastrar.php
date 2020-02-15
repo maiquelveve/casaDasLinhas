@@ -67,7 +67,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label>Código de Barras</label>
-                <input type="text" class="form-control codigo_barra" id="st_codigo_barra" name="st_codigo_barra" value="<?php echo (isset($post['st_codigo_barra']) && !empty($post['st_codigo_barra']) ? $post['st_codigo_barra'] : '')?>" placeholder="Informe o Código de Barra"/>
+                <input type="text" class="form-control" id="st_codigo_barra_cadastrar" name="st_codigo_barra" value="<?php echo (isset($post['st_codigo_barra']) && !empty($post['st_codigo_barra']) ? $post['st_codigo_barra'] : '')?>" placeholder="Informe o Código de Barra"/>
             </div>
         </div>
         <div class="form-row">
